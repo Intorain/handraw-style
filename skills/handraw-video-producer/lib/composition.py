@@ -319,6 +319,6 @@ def mix(ep):
         from tts_engine import generate_srt
         text = generate_srt(timing['segments'])
         import re
-        vtt = re.sub(r'(\d\d:\d\d:\d\d),(\d{3})',r'\1.\2',text)
+        vtt = re.sub(r'(\d{2}:\d{2}:\d{2}),(\d{3})', r'\1.\2', text)
         (ep/'outputs/subtitles.vtt').write_text('WEBVTT\n\n'+vtt,encoding='utf-8')
     return out
