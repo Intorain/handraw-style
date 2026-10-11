@@ -182,7 +182,7 @@ Xiaohongshu infographic. Layout: {layout_prompt_en}. Clean background with gener
 当用户触发回填时：
 1. **自动组织资源**：将图片规范命名保存为 `<article_dir>/images/illus_01.webp`（或 `.png`）；
 2. **执行图文装配与高保真文字替换**：
-   - 知识类文章若定义了 `Text to Replace`：自动将原文对应的复杂繁琐文字**修剪替换**为 `![插图](images/illus_0N.webp)` + `*▲ 图N：说明*` + `[精炼导读/公式清单]`；
+   - 知识类文章若定义了 `Text to Replace`：自动将原文对应的复杂繁琐文字**修剪替换**为插图Markdown、`*▲ 图N：说明*`和`[精炼导读/公式清单]`；图片地址按本期实际文件填入`images/illus_编号.webp`，不是随包静态文件；
    - 严格执行**保真检查**：确保精炼导读中包含原有核心公式与数据；
    - 若未定义文字替换：规范将图片插入指定锚点之后；
 3. **输出定稿**：生成 `[article_name]_illustrated.md`。

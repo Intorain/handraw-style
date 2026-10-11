@@ -11,7 +11,6 @@ import sys
 import os
 import shutil
 import subprocess
-import edge_tts
 
 if hasattr(sys.stdout, "reconfigure"):
     try:
@@ -32,6 +31,7 @@ def format_timestamp(seconds: float) -> str:
     return f"{hours:02d}:{minutes:02d}:{secs:02d},{milli:03d}"
 
 async def synthesize(text: str, out_audio: Path, voice: str = DEFAULT_VOICE, rate: str = "+0%"):
+    import edge_tts
     out_audio.parent.mkdir(parents=True, exist_ok=True)
     communicate = edge_tts.Communicate(text, voice, rate=rate)
 

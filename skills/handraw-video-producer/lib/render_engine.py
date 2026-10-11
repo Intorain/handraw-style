@@ -10,7 +10,44 @@ import sys
 import time
 import os
 import shutil
+from contextlib import contextmanager
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import threading
 from playwright.sync_api import sync_playwright
+from runtime_tools import executable, browser_launch_options
+
+
+@contextmanager
+def local_server(root):
+    class QuietHandler(SimpleHTTPRequestHandler):
+        def log_message(self, *args):
+            pass
+    server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(Path(root).resolve())))
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        yield 'http://127.0.0.1:' + str(server.server_port)
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=5)
+
+
+def render_html_to_video(html_path, out_video, duration, fps=30, width=1920, height=1080,
+                         crf=18, preset='fast', stills=None, serve_root=None, start_time=0):
+    from production_stage import owner, require
+    location = Path(serve_root).resolve() if serve_root else Path(html_path).resolve().parent
+    if (owner(location)/'production.json').exists() or (owner(location)/'episode.json').exists():
+        require(location)
+    if serve_root is None:
+        return _render_html_to_video(html_path, out_video, duration, fps, width, height, crf, preset, stills, start_time=start_time)
+    root = Path(serve_root).resolve()
+    relative = Path(html_path).resolve().relative_to(root).as_posix()
+    from urllib.parse import quote
+    with local_server(root) as base:
+        return _render_html_to_video(html_path, out_video, duration, fps, width, height, crf, preset, stills,
+                                    base + '/' + quote(relative),start_time=start_time)
 
 if hasattr(sys.stdout, "reconfigure"):
     try:
@@ -18,7 +55,7 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-def render_html_to_video(
+def _render_html_to_video(
     html_path: Path,
     out_video: Path,
     duration: float,
@@ -27,18 +64,20 @@ def render_html_to_video(
     height: int = 1080,
     crf: int = 18,
     preset: str = "fast",
-    stills: list = None
+    stills: list = None,
+    browser_url: str = None,
+    start_time: float = 0
 ):
     out_video = Path(out_video).resolve()
     out_video.parent.mkdir(parents=True, exist_ok=True)
-    html_url = html_path.resolve().as_uri()
+    html_url = browser_url or html_path.resolve().as_uri()
 
     total_frames = int(round(duration * fps))
 
     with sync_playwright() as p:
         # 使用本地 Windows 原生 Edge 内核，免去额外下载 Chromium
         browser = p.chromium.launch(
-            channel="msedge",
+            **browser_launch_options(),
             args=[
                 "--disable-web-security",
                 "--enable-gpu-rasterization",
@@ -71,6 +110,7 @@ def render_html_to_video(
             stills_dir.mkdir(parents=True, exist_ok=True)
             for sec in stills:
                 t = float(sec)
+                page.evaluate("async t=>{if(window.prepareFrame)await window.prepareFrame(t)}", t)
                 frame_data = page.evaluate(f"window.renderFrame ? window.renderFrame({t}) : document.querySelector('canvas').toDataURL('image/png').split(',')[1]")
                 png_bytes = base64.b64decode(frame_data)
                 img_path = stills_dir / f"frame_{t:06.2f}s.png"
@@ -81,7 +121,7 @@ def render_html_to_video(
 
         # 启动 FFmpeg 管道推流
         ffmpeg_cmd = [
-            os.environ.get("HVP_FFMPEG") or shutil.which("ffmpeg") or "ffmpeg", "-y", "-v", "error",
+            executable('ffmpeg'), "-y", "-v", "error",
             "-f", "image2pipe",
             "-framerate", str(fps),
             "-c:v", "png",
@@ -95,12 +135,13 @@ def render_html_to_video(
 
         proc = subprocess.Popen(ffmpeg_cmd, stdin=subprocess.PIPE)
 
-        start_time = time.time()
+        wall_started = time.time()
         print(f"[RENDER] 开始渲染: 总帧数 {total_frames} 帧, {fps}fps, {width}x{height} -> {out_video.name}")
 
         try:
             for frame_idx in range(total_frames):
-                t = frame_idx / fps
+                t = start_time + frame_idx / fps
+                page.evaluate("async t=>{if(window.prepareFrame)await window.prepareFrame(t)}", t)
                 frame_data = page.evaluate(f"window.renderFrame ? window.renderFrame({t}) : document.querySelector('canvas').toDataURL('image/png').split(',')[1]")
                 proc.stdin.write(base64.b64decode(frame_data))
                 if frame_idx % 30 == 0 or frame_idx == total_frames - 1:
@@ -118,7 +159,7 @@ def render_html_to_video(
         if result or errors:
             raise RuntimeError(f"渲染失败: ffmpeg={result}, browser_errors={errors}")
 
-        elapsed = time.time() - start_time
+        elapsed = time.time() - wall_started
         fps_real = total_frames / max(0.001, elapsed)
         print(f"[OK] 渲染完成！总耗时: {elapsed:.2f}秒 (平均 {fps_real:.1f} fps) -> {out_video}")
 

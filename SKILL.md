@@ -14,7 +14,20 @@ gallery and reference-image path from this installed package root. Install this
 repository at path `.` so the `images/` directory and the nested Skill are
 kept together.
 
+The shot gallery ships seven PNG screenshots only. Skill installation must not
+download demo videos or private episode media referenced by local validation
+records. Video binaries are excluded from the Skill sync manifest. Video inputs
+for a new production are collected after that episode's plan is confirmed.
+
+Read [package dependencies](DEPENDENCIES.md) before claiming that an installed
+Skill can generate or render media. Bundled source/resources and separately
+installed tools/services are distinct; never rely on the author's workstation.
+
 ## Request routing index
+
+For video shot selection and output choices, invoke [handraw-video-producer](skills/handraw-video-producer/SKILL.md). Browse the [shot gallery](skills/handdraw-style-prompter/gallery/video-shots.html): ST-001 through ST-007 are the only shared shot types. Audience, goal, script and visual direction are designed for the episode. Shot selection is preference input, not user approval. Keep confirmed-plan and reviewed-input gates; unsupported native Jianying configurations need explicit per-shot prerendering.
+
+For Volcano/Doubao voice synthesis, real speech timestamps, or persistent user account setup, invoke [handraw-volc-tts](skills/handraw-volc-tts/SKILL.md). Its client is bundled; secrets stay in encrypted per-user configuration outside the repository and Skill installation. Video voice calls keep the confirmed-plan and reviewed-visual gates.
 
 When the user asks to illustrate an article, plan article illustrations, choose
 insertion points, or write prompts for article images, read and invoke
@@ -38,16 +51,18 @@ When the user asks to design an IP character, build a Character Bible or IP Desi
 When the user asks to manage, add, query, replace, or delete assets in the custom library (例如“添加到角色库”、“保存到道具库/场景库”、“替换角色基准图”、“修改资产名称/标签”、“初始化/挂载图库目录”、“查看图库清单”), read and invoke
 [custom-asset-manager](skills/custom-asset-manager/SKILL.md) before handling the request. It manages the full lifecycle of custom character (CH-*), prop (PR-*), and scene (SCN-*) assets with zero Git conflicts.
 
-When the user explicitly requests art animation, an art scroll for knowledge, animation reference breakdown, narration-driven art, or Kurzgesagt/Vox/3b1b/presenter animation, invoke [handraw-video-producer](skills/handraw-video-producer/SKILL.md) and its [art-motion integration guide](skills/handraw-video-producer/references/art_motion_integration_guide.md) first. Preserve the chosen visual format; bind the current handdraw style, layout and color libraries to actual assets and editable explanation layers.
+For art animation, knowledge animation and narration-driven visuals, read [handraw-video-producer](skills/handraw-video-producer/SKILL.md) and [shot guide](skills/handraw-video-producer/references/shot_video_guide.md). Select one primary shot type per shot and compose its optional layers; bind actual handdraw styles, layouts and palette values.
+
+Before designing a video plan, establish the user's output route: browser MP4 or Jianying draft. The shared video controller routes execution to [browser producer](skills/handraw-browser-producer/SKILL.md) or [Jianying producer](skills/handraw-jianying-producer/SKILL.md). Jianying defaults to native ST-001 through ST-004 configurations; never silently prerender unsupported shots. Named prerender exceptions require the user's real approval of the current plan.
 
 When the user asks to plan, script, or direct a knowledge or tutorial AI video, generate A/B-roll visual shot lists, or structure video production (例如“做教学视频”、“视频分镜表”、“知识类视频剪辑”、“A/B-roll编排”、“视频导演”), read and invoke
-[knowledge-video-director](skills/knowledge-video-director/SKILL.md) before handling the request. It orchestrates voiceover scripts, acoustic alignment, and 7-column visual shot lists alternating between white-background IP theater (A-roll) and dark-background motion graphics/demos (B-roll).
+[knowledge-video-director](skills/knowledge-video-director/SKILL.md) before handling the request. It plans learning goals, sources, scripts and visual explanations using the shared shot types. Submit the complete episode plan for user confirmation, then collect and review all visual inputs; voiceover, animation code and rendering begin only after those inputs are ready.
 
 When the user asks to plan a photo shoot, create a photography project, generate shot lists, design couple/wedding/family/portrait/cosplay photography plans, or draw card for a themed shoot (例如“拍摄企划”、“情侣照”、“婚纱照”、“写真”、“全家福”、“Cosplay拍摄”、“抽卡”、“8宫格”、“摄影分镜”), read and invoke
 [couple-photo-orchestrator](skills/couple-photo-orchestrator/SKILL.md) before handling the request. It orchestrates the full pipeline from direction selection through Look design, scene micro-zones, pose-emotion planning, Share Card compilation, and 8-shot adaptive grid generation.
 
 When the user asks to create, produce, or render hand-drawn animated videos, motion comics, picture book animations, whiteboard videos, or art scrolls (例如“做手绘视频”、“制作手绘动画”、“动态漫画”、“漫动画”、“有声绘本”、“边画边讲视频”、“手绘视频制作”、“白板视频出片”), read and invoke
-[handraw-video-producer](skills/handraw-video-producer/SKILL.md) before handling the request. It routes comic, knowledge/A-B-roll, story, illustrated whiteboard and scroll workflows. Respect the requested landscape/portrait framing and narration provider; check real assets and current mode capabilities rather than assuming a fixed portrait template or universal provider support. See its frame/asset contract for reflow and validation.
+[handraw-video-producer](skills/handraw-video-producer/SKILL.md) before video requests. Design the episode brief and visual/motion direction, then choose ST-001 through ST-007 or a documented episode-local type. Respect frame and narration settings. Submit the complete plan for user confirmation; collect and review every required visual input before voiceover, animation code, previews or synthesis.
 
 
 ## Default mode
@@ -122,13 +137,19 @@ Users can browse `skills/handdraw-style-prompter/gallery/index.html` for numbere
      - 构图拓扑关系单一固定，生图模型能直白无误地理解。处理方式为拿来即用，直接提取其 prompt 模板并拼接指定画风与主题输出。
   2. **高维动态解析型排版（Skill 级动态解析决策型 · Generative Frameworks）**：
      - 代表图型为 `SC-021`（自适应双拼照片转译社媒卡）。
-     - 该类图型不是单一路线的固定线框，而是高度抽象的“视觉构图与空间语法系统”。生图模型不具备自主解析多选菜单的能力，若直接平铺备选清单，模型会因语义冲突退化为机械照搬原片全景背景。
+     - 该类图型不是单一路线的固定线框，而是高度抽象的“跨媒介视觉构图与空间语法系统”。生图模型不具备自主解析多选菜单的能力，若直接平铺备选清单，模型会因语义冲突退化为机械照搬原片全景背景。
      - **执行机制**：必须由 AI 助手充当设计总监（Art Director）进行前置解析与动态决策：
-       - 分析用户上传照片或主题的视觉特征与情绪基调；
-       - 构图语法严格轮替（Round-Robin 机制）：若用户未显式指定构图，必须在【越界破框型】、【微缩浮岛型】、【记忆图谱平铺型】、【经典悬浮落地型】、【正负形咬合型】之间严格进行顺序轮替抽卡，严禁连续输出相同玩法，确保画面多样性与高阶审美；
-       - 针对当前画面动态生成强力背景净化指令（坚决剔除原片石墙、马路、树木等环境杂质，确保 40%–80% 纯净负空间）；
-       - 严格画幅比例守恒与双拼尺寸规则：拼接时严禁修改或拉伸原图比例；加上艺术区后，整图尺寸严格为原图宽度的两倍（左右并排）或原图高度的两倍（上下堆叠），两区各占 50%，中线无缝平齐拼接；
-       - 最终编译输出**单义、排他、强约束**的执行提示词，确保生图模型精准呈现出丰富多变的艺术构图。
+       - **比例驱动切分原则（严禁死板切分，完全由目标画幅比例决定）**：竖版画幅（如 3:4、9:16、1:2 等）默认采用上下 1:1 纵向堆叠双拼（上方摄影/下方手绘），顺应手机端自上而下的视觉动势与故事自然向下延展；横版画幅（如 16:9、4:3、5:2、21:9 等）默认采用左右 1:1 横向并排双拼（左侧摄影/右侧手绘），呈现独立艺术杂志跨页质感；方版画幅（1:1）自适应切分或服从用户显式指定；
+       - **七大核心转译类型体系（Type 01 ~ Type 07）**：若用户未显式指定构图类型，由 AI 结合画面主题推荐最契合的 1 种类型（或按顺序轮替抽卡），并为选定的唯一类型生成单义、排他的执行提示词：
+         * `【类型 01 · 视线锚点跨界续绘型 (Visual Anchor Continuation)】`：单一核心动态锚点（水/路/光/手势）跨越中缝边界流淌进入暖象牙纸手绘区域，在下方衍生绘本互动故事与极简黑线小人；
+         * `【类型 02 · 撕纸裂变第二世界型 (Torn-Paper Second World)】`：不规则手工物理撕纸毛边接缝，现实穿透撕纸后物理规则超现实突变（水变布匹/光可手捧/影子成阶梯），暖象牙纸与克制拼贴；
+         * `【类型 03 · 越界破框型 (Boundary Break / Out-of-Bounds)】`：几何色块/容器承托，主体关键部位（头/手/枝叶）突破色块边缘伸出，形成空间穿透感；
+         * `【类型 04 · 微缩浮岛型 (Miniature Diorama / Floating Island)】`：主体微缩为 10%–25% 纸面小景，单抹色带或微基座承托，四周大片静谧空旷留白；
+         * `【类型 05 · 记忆图谱平铺型 (Memory Knolling / Fragment Collage)】`：居中放置手绘主体，留白中错落平铺 3–6 枚带 NO. 编号的原图记忆特征贴纸；
+         * `【类型 06 · 经典悬浮落地型 (Suspended / Grounded Hero)】`：主体尺度适中（占 40%–55%），底部仅用一条极简手绘地面摩擦线提示空间支撑；
+         * `【类型 07 · 正负形咬合型 (Gestalt Positive-Negative Interlock)】`：主体高度提炼为几何剪影，与背景正负形相互转换咬合；
+       - **背景强力净化指令**：坚决剔除原片石墙、马路、树木等环境杂质，确保艺术转译侧四周 40%–80% 纯净负空间与呼吸边距；
+       - **强制交互点选输出规范**：每当使用或输出 SC-021 提示词时，在提示词文本末尾，**必须固定附带 7 大可选类型索引清单**（标明当前已采用类型，并提示用户回复编号如“换成 02”即可一键换装），赋予用户随时点选调整的机会。
 - **传图与改图规则（无需强制传图，完全支持用户传图与改图）**：无论使用 `SC-021`（自适应双拼照片转译社媒卡）还是其他任何风格/图型，用户传图均属**可选行为**：
   - **用户未传图时**：完全支持纯文本直出。AI 助手直接将排版规则与指定风格特征拼接为完整提示词（若未提供主题则提供直观占位符），绝不阻断对话或强制要求用户必须传图，由生图模型原生自主生成写实画面与风格转译。
   - **用户传图 / 改图时（写实改手绘 / 垫图转风格）**：完全支持！当用户上传照片或参考图要求“改图”、“改风格”、“转手绘”时，为了防止生图模型在写实照片表面机械叠加滤镜，提示词中**必须使用以下固定转绘重绘指令**：
