@@ -702,8 +702,8 @@
           "traits_activation": "strong"
         },
         "FH-044": {
-          "name_activation": "weak",
-          "traits_activation": "strong"
+          "name_activation": "strong",
+          "traits_activation": "none"
         }
       }
     }
@@ -725,7 +725,7 @@
     "traits_activation": "strong"
   },
   "FH-044": {
-    "name_activation": "weak",
-    "traits_activation": "strong"
+    "name_activation": "strong",
+    "traits_activation": "none"
   }
 }
