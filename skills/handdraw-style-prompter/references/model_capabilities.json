@@ -700,6 +700,10 @@
         "FG-023": {
           "name_activation": "weak",
           "traits_activation": "strong"
+        },
+        "FH-044": {
+          "name_activation": "weak",
+          "traits_activation": "strong"
         }
       }
     }
@@ -717,6 +721,10 @@
     "traits_activation": "none"
   },
   "FG-023": {
+    "name_activation": "weak",
+    "traits_activation": "strong"
+  },
+  "FH-044": {
     "name_activation": "weak",
     "traits_activation": "strong"
   }

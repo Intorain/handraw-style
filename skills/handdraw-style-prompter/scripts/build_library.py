@@ -612,8 +612,8 @@ checkRepositoryUpdate();
 
 def main() -> None:
     styles = parse_styles()
-    if len(styles) != 330:
-        raise SystemExit(f"Expected exactly 330 styles, parsed {len(styles)}")
+    if len(styles) != 331:
+        raise SystemExit(f"Expected exactly 331 styles, parsed {len(styles)}")
     cat_counts: dict[str, int] = {}
     for item in styles:
         m = re.match(r"^([A-Za-z]{2})-(\d{3})$", item["number"])
