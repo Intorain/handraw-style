@@ -1,0 +1,20 @@
+生成工具：未执行，仅归档提示词。
+风格：FA-009，Raw Zine Diary Cartoon，强激活，无需参考图。
+
+风格名称：Raw Zine Diary Cartoon。参考作者/风格名称：Lynda Barry。
+主题：一只猫正在喝茶。
+使用场景：日常生活方式插画。受众：喜欢温暖、笨拙、带手帐感小故事的观众。
+画幅比例：3:4，竖版。
+内容密度：低。情感基调：安静、温暖、略带困倦的下午茶时刻。
+主题色：芥末黄（Mustard Yellow）为主色，朱砂红（Cinnabar Red）点缀，奶油白（Cream White）为底色。
+构图选择：窗边小木桌；猫咪坐在桌旁，双爪捧着冒热气的茶杯；桌面放着茶壶和一小块点心；窗外仅保留模糊树影。
+输出要求：纯插画，画面像一本随手画下的私人手帐日记，表现一只猫认真又有一点困倦地喝茶的日常瞬间。画面不出现文字、字母、数字、Logo或水印。生成一张完整的3:4图片。
+
+Style name: Raw Zine Diary Cartoon. Reference author/style name: Lynda Barry.
+Theme: A cat is drinking tea.
+Use case: An everyday lifestyle illustration. Audience: Viewers who enjoy warm, awkward, diary-like little stories.
+Aspect ratio: 3:4 portrait.
+Content density: Low. Emotional tone: Quiet, warm, and slightly sleepy afternoon tea.
+Theme color: Mustard Yellow as the main color, Cinnabar Red as an accent, and Cream White as the base.
+Composition choice: A small wooden table by a window; the cat sits beside it and holds a steaming teacup with both paws; a teapot and a small snack rest on the tabletop; only blurred tree shadows appear outside.
+Output requirements: Pure illustration, like a casually drawn page from a private diary, showing a cat seriously and slightly sleepily drinking tea. No text, letters, numbers, logo, or watermark. Generate one complete 3:4 image.
