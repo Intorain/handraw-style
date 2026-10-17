@@ -59,7 +59,11 @@ def sync_data():
     layouts = load_json(target_data_dir / "layouts.json")
     colors = load_json(target_data_dir / "colors.json")
     tones = load_json(target_data_dir / "tones.json")
-    partners = load_json(target_data_dir / "partners.json")
+    # The unfinished client is local-only; fresh checkouts may have no partner source.
+    partner_file = target_data_dir / "partners.json"
+    if not partner_file.exists():
+        save_json(partner_file, [])
+    partners = load_json(partner_file)
 
     # 2. 生成 manifest.json
     now_iso = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())

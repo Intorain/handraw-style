@@ -74,3 +74,8 @@ client/history/
 build/
 dist/
 release/
+
+# Unfinished desktop workbench stays local until explicitly approved for release
+/client/
+/scripts/build_installer.py
+/启动客户端.bat
