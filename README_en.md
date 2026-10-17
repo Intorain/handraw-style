@@ -65,6 +65,8 @@ You can install this skill directly into your AI coding assistant (Codex, Claude
 
 The assistant will automatically clone the repository and configure all styles, layout templates, and reference assets.
 
+This package focuses on static image design. Video production, narration, rendering and the shot gallery now belong to the separate `handraw-video` project. Static video-cover design remains available here.
+
 ---
 
 ## How to Use This Skill

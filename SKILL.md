@@ -14,20 +14,13 @@ gallery and reference-image path from this installed package root. Install this
 repository at path `.` so the `images/` directory and the nested Skill are
 kept together.
 
-The shot gallery ships seven PNG screenshots only. Skill installation must not
-download demo videos or private episode media referenced by local validation
-records. Video binaries are excluded from the Skill sync manifest. Video inputs
-for a new production are collected after that episode's plan is confirmed.
-
 Read [package dependencies](DEPENDENCIES.md) before claiming that an installed
 Skill can generate or render media. Bundled source/resources and separately
 installed tools/services are distinct; never rely on the author's workstation.
 
+Video production, narration and rendering are maintained in the separate `handraw-video` project. This package remains focused on static images, including article and video cover images.
+
 ## Request routing index
-
-For video shot selection and output choices, invoke [handraw-video-producer](skills/handraw-video-producer/SKILL.md). Browse the [shot gallery](skills/handdraw-style-prompter/gallery/video-shots.html): ST-001 through ST-007 are the only shared shot types. Audience, goal, script and visual direction are designed for the episode. Shot selection is preference input, not user approval. Keep confirmed-plan and reviewed-input gates; unsupported native Jianying configurations need explicit per-shot prerendering.
-
-For Volcano/Doubao voice synthesis, real speech timestamps, or persistent user account setup, invoke [handraw-volc-tts](skills/handraw-volc-tts/SKILL.md). Its client is bundled; secrets stay in encrypted per-user configuration outside the repository and Skill installation. Video voice calls keep the confirmed-plan and reviewed-visual gates.
 
 When the user asks to illustrate an article, plan article illustrations, choose
 insertion points, or write prompts for article images, read and invoke
@@ -51,18 +44,8 @@ When the user asks to design an IP character, build a Character Bible or IP Desi
 When the user asks to manage, add, query, replace, or delete assets in the custom library (例如“添加到角色库”、“保存到道具库/场景库”、“替换角色基准图”、“修改资产名称/标签”、“初始化/挂载图库目录”、“查看图库清单”), read and invoke
 [custom-asset-manager](skills/custom-asset-manager/SKILL.md) before handling the request. It manages the full lifecycle of custom character (CH-*), prop (PR-*), and scene (SCN-*) assets with zero Git conflicts.
 
-For art animation, knowledge animation and narration-driven visuals, read [handraw-video-producer](skills/handraw-video-producer/SKILL.md) and [shot guide](skills/handraw-video-producer/references/shot_video_guide.md). Select one primary shot type per shot and compose its optional layers; bind actual handdraw styles, layouts and palette values.
-
-Before designing a video plan, establish the user's output route: browser MP4 or Jianying draft. The shared video controller routes execution to [browser producer](skills/handraw-browser-producer/SKILL.md) or [Jianying producer](skills/handraw-jianying-producer/SKILL.md). Jianying defaults to native ST-001 through ST-004 configurations; never silently prerender unsupported shots. Named prerender exceptions require the user's real approval of the current plan.
-
-When the user asks to plan, script, or direct a knowledge or tutorial AI video, generate A/B-roll visual shot lists, or structure video production (例如“做教学视频”、“视频分镜表”、“知识类视频剪辑”、“A/B-roll编排”、“视频导演”), read and invoke
-[knowledge-video-director](skills/knowledge-video-director/SKILL.md) before handling the request. It plans learning goals, sources, scripts and visual explanations using the shared shot types. Submit the complete episode plan for user confirmation, then collect and review all visual inputs; voiceover, animation code and rendering begin only after those inputs are ready.
-
 When the user asks to plan a photo shoot, create a photography project, generate shot lists, design couple/wedding/family/portrait/cosplay photography plans, or draw card for a themed shoot (例如“拍摄企划”、“情侣照”、“婚纱照”、“写真”、“全家福”、“Cosplay拍摄”、“抽卡”、“8宫格”、“摄影分镜”), read and invoke
 [couple-photo-orchestrator](skills/couple-photo-orchestrator/SKILL.md) before handling the request. It orchestrates the full pipeline from direction selection through Look design, scene micro-zones, pose-emotion planning, Share Card compilation, and 8-shot adaptive grid generation.
-
-When the user asks to create, produce, or render hand-drawn animated videos, motion comics, picture book animations, whiteboard videos, or art scrolls (例如“做手绘视频”、“制作手绘动画”、“动态漫画”、“漫动画”、“有声绘本”、“边画边讲视频”、“手绘视频制作”、“白板视频出片”), read and invoke
-[handraw-video-producer](skills/handraw-video-producer/SKILL.md) before video requests. Design the episode brief and visual/motion direction, then choose ST-001 through ST-007 or a documented episode-local type. Respect frame and narration settings. Submit the complete plan for user confirmation; collect and review every required visual input before voiceover, animation code, previews or synthesis.
 
 
 ## Default mode
