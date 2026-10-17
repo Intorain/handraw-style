@@ -69,3 +69,5 @@ skills/couple-photo-orchestrator/images/
 .pytest_cache/
 node_modules/
 tmp/
+client/cache/
+client/history/

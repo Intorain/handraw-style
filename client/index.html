@@ -21,13 +21,13 @@
     <!-- 画廊分类模式 -->
     <nav class="nav-tabs">
       <button type="button" class="nav-tab active" data-tab="styles">
-        <span>🎨</span> 风格库 (331)
+        <span>🎨</span> 风格库 (<span id="tab-count-styles">331</span>)
       </button>
       <button type="button" class="nav-tab" data-tab="layouts">
-        <span>📐</span> 排版图型 (166)
+        <span>📐</span> 排版图型 (<span id="tab-count-layouts">166</span>)
       </button>
       <button type="button" class="nav-tab" data-tab="colors">
-        <span>🌈</span> 经典单色 (36)
+        <span>🌈</span> 经典单色 (<span id="tab-count-colors">36</span>)
       </button>
       <button type="button" class="nav-tab" data-tab="fusion">
         <span>🎭</span> 跨媒介融合
@@ -36,6 +36,11 @@
 
     <!-- 右侧操作与升级提醒 -->
     <div class="header-actions">
+      <!-- 云端画风库动态同步按钮 -->
+      <button type="button" class="btn-pill" id="btn-cloud-sync" title="点击检查并从云端同步最新画风与排版配置（免升级客户端）">
+        <span>☁️</span> 云端画风 (<span id="cloud-styles-count">331</span>)
+      </button>
+
       <!-- Codex 风格一键升级提醒徽章 -->
       <div id="navbar-update-badge" class="update-badge up-to-date" title="点击检查更新">
         ✨ 检查更新中...
@@ -353,6 +358,9 @@
       </div>
     </div>
   </div>
+
+  <!-- 全局浮动通知容器 -->
+  <div id="toast-container" class="toast-container"></div>
 
   <!-- 引入主应用脚本 -->
   <script type="module" src="/js/app.js"></script>

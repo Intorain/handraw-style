@@ -82,3 +82,51 @@ function initModals() {
     });
   });
 }
+
+/**
+ * 全局浮动通知工具
+ * @param {string} message 提示文案
+ * @param {'info'|'success'|'warn'|'error'} type 类型
+ * @param {number} duration 持续毫秒
+ */
+export function showToast(message, type = 'info', duration = 3500) {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+
+  const icons = {
+    success: '🎉',
+    info: '✨',
+    warn: '⚠️',
+    error: '❌'
+  };
+
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <span class="toast-icon">${icons[type] || '✨'}</span>
+    <span class="toast-body">${message}</span>
+    <button type="button" class="toast-close" title="关闭">×</button>
+  `;
+
+  const closeBtn = toast.querySelector('.toast-close');
+  closeBtn.addEventListener('click', () => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => toast.remove(), 250);
+  });
+
+  container.appendChild(toast);
+
+  if (duration > 0) {
+    setTimeout(() => {
+      if (toast.parentElement) {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 250);
+      }
+    }, duration);
+  }
+}
+
+// 挂载至全局方便任意模块调用
+window.showToast = showToast;

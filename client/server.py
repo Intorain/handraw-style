@@ -37,11 +37,20 @@ HISTORY_DIR = CLIENT_DIR / "history"
 HISTORY_FILE = HISTORY_DIR / "history.json"
 PARTNERS_FILE = CLIENT_DIR / "partners.json"
 VERSION_FILE = CLIENT_DIR / "version.json"
+CACHE_DIR = CLIENT_DIR / "cache"
+CACHE_IMG_DIR = CACHE_DIR / "images"
+
+# 云端同步与 CDN 地址
+CLOUD_MANIFEST_URL = "https://static.handraw-style.com/manifest.json"
+CLOUD_IMG_BASE_URL = "https://img.handraw-style.com/images/"
 
 # 引用数据定位
 REFERENCES_DIR = ROOT_DIR / "skills" / "handdraw-style-prompter" / "references"
 
 HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+CACHE_IMG_DIR.mkdir(parents=True, exist_ok=True)
+
 if not HISTORY_FILE.exists():
     HISTORY_FILE.write_text("[]", encoding="utf-8")
 
@@ -69,10 +78,60 @@ def save_json_safe(filepath, data):
         return False
 
 
+# ---------------- 云端动态同步与多级缓存引擎 ----------------
+
+def fetch_url_json(url, timeout=4.0):
+    req = urllib.request.Request(url, headers={"User-Agent": "HandRawStudio-Client/1.0"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        if resp.status == 200:
+            return json.loads(resp.read().decode("utf-8"))
+    return None
+
+def check_and_sync_cloud_data(force=False):
+    """
+    检查云端 static.handraw-style.com/manifest.json 是否有新画风或配置，
+    若有更新则静默拉取并写入 client/cache/，实现【无需更新客户端，自动拉新画风】
+    """
+    cache_manifest_file = CACHE_DIR / "manifest.cache.json"
+    local_cache_manifest = load_json_safe(cache_manifest_file, {})
+
+    try:
+        remote_manifest = fetch_url_json(CLOUD_MANIFEST_URL, timeout=3.5)
+        if not remote_manifest:
+            return {"synced": False, "reason": "无法连接云端静态源"}
+
+        remote_ver = remote_manifest.get("data_version", "")
+        remote_count = remote_manifest.get("styles_count", 0)
+        local_ver = local_cache_manifest.get("data_version", "")
+        local_count = local_cache_manifest.get("styles_count", 0)
+
+        need_sync = force or (remote_ver != local_ver) or (remote_count > local_count)
+
+        if need_sync:
+            print(f"[Cloud Sync] 检测到云端新数据 (版本: {remote_ver}, 画风数: {remote_count})，正在静默拉取...")
+            urls = remote_manifest.get("data_urls", {})
+            for key, url in urls.items():
+                try:
+                    data = fetch_url_json(url, timeout=8.0)
+                    if data is not None:
+                        save_json_safe(CACHE_DIR / f"{key}.json", data)
+                except Exception as e:
+                    print(f"[Cloud Sync Error] 拉取 {key} 失败: {e}")
+
+            save_json_safe(cache_manifest_file, remote_manifest)
+            added = remote_count - local_count if local_count > 0 else 0
+            print(f"[Cloud Sync] 云端数据同步成功！新增画风: {added}")
+            return {"synced": True, "data_version": remote_ver, "styles_count": remote_count, "new_styles": added}
+        else:
+            return {"synced": False, "reason": "已是最新云端数据", "data_version": local_ver, "styles_count": local_count}
+    except Exception as e:
+        return {"synced": False, "reason": f"探测云端异常: {str(e)}"}
+
+
 def compare_versions(v1, v2):
     """返回 1 (v1 > v2), 0 (v1 == v2), -1 (v1 < v2)"""
     def parse(v):
-        return [int(x) for x in v.lstrip("v").split(".") if x.isdigit()]
+        return [int(x) for x in str(v).lstrip("v").split(".") if x.isdigit()]
     p1 = parse(v1)
     p2 = parse(v2)
     for a, b in zip(p1, p2):
@@ -114,13 +173,15 @@ class StudioHandler(BaseHTTPRequestHandler):
             self.handle_api_partners()
         elif path == "/api/version":
             self.handle_api_version()
+        elif path == "/api/cloud-sync-status":
+            self.handle_api_cloud_sync_status()
         elif path == "/api/history":
             self.handle_api_history()
-        # 2. 静态图片路由 (避免跨盘符或拷贝)
+        # 2. 静态图片路由 (支持本地+云端按需缓存)
         elif path.startswith("/images/"):
             rel_path = path[len("/images/"):]
             local_file = IMAGES_DIR / rel_path
-            self.serve_file(local_file)
+            self.serve_file(local_file, is_image=True, rel_image_path=rel_path)
         elif path.startswith("/history-images/"):
             rel_path = path[len("/history-images/"):]
             local_file = HISTORY_DIR / rel_path
@@ -152,6 +213,8 @@ class StudioHandler(BaseHTTPRequestHandler):
             self.handle_edit(body)
         elif path == "/api/upgrade":
             self.handle_upgrade()
+        elif path == "/api/cloud-sync":
+            self.handle_api_cloud_sync()
         else:
             self.end_headers_with_cors(status=404)
             self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode("utf-8"))
@@ -169,11 +232,12 @@ class StudioHandler(BaseHTTPRequestHandler):
     # ---------------- 业务处理器 ----------------
 
     def handle_api_data(self):
-        """返回风格、排版、色彩与影调的完整数据集合"""
-        styles = load_json_safe(REFERENCES_DIR / "styles.json", [])
-        layouts = load_json_safe(REFERENCES_DIR / "layouts.json", [])
-        colors = load_json_safe(REFERENCES_DIR / "colors.json", [])
-        tones = load_json_safe(REFERENCES_DIR / "tones.json", [])
+        """返回风格、排版、色彩与影调的完整数据集合（优先读取本地增量缓存，无缓存回退到预置）"""
+        styles = load_json_safe(CACHE_DIR / "styles.json") or load_json_safe(REFERENCES_DIR / "styles.json", [])
+        layouts = load_json_safe(CACHE_DIR / "layouts.json") or load_json_safe(REFERENCES_DIR / "layouts.json", [])
+        colors = load_json_safe(CACHE_DIR / "colors.json") or load_json_safe(REFERENCES_DIR / "colors.json", [])
+        tones = load_json_safe(CACHE_DIR / "tones.json") or load_json_safe(REFERENCES_DIR / "tones.json", [])
+        cache_manifest = load_json_safe(CACHE_DIR / "manifest.cache.json", {})
 
         # 整理分组与统计信息
         groups_map = {}
@@ -193,15 +257,30 @@ class StudioHandler(BaseHTTPRequestHandler):
             "total_styles": len(styles),
             "total_layouts": len(layouts),
             "total_colors": len(colors),
+            "data_version": cache_manifest.get("data_version", "local-preset"),
+            "cloud_synced": bool(cache_manifest)
         }
         self.end_headers_with_cors()
         self.wfile.write(json.dumps(payload, ensure_ascii=False).encode("utf-8"))
 
     def handle_api_partners(self):
-        """返回中转商与赞助商配置"""
-        partners = load_json_safe(PARTNERS_FILE, [])
+        """返回中转商与赞助商配置（优先读取云端同步缓存）"""
+        partners = load_json_safe(CACHE_DIR / "partners.json") or load_json_safe(PARTNERS_FILE, [])
         self.end_headers_with_cors()
         self.wfile.write(json.dumps({"partners": partners}, ensure_ascii=False).encode("utf-8"))
+
+    def handle_api_cloud_sync_status(self):
+        cache_manifest = load_json_safe(CACHE_DIR / "manifest.cache.json", {})
+        self.end_headers_with_cors()
+        self.wfile.write(json.dumps({
+            "cache_manifest": cache_manifest,
+            "is_cached": bool(cache_manifest)
+        }, ensure_ascii=False).encode("utf-8"))
+
+    def handle_api_cloud_sync(self):
+        res = check_and_sync_cloud_data(force=True)
+        self.end_headers_with_cors()
+        self.wfile.write(json.dumps(res, ensure_ascii=False).encode("utf-8"))
 
     def handle_api_version(self):
         """Codex 风格版本检查：本地版本 vs 远端最新版本"""
@@ -613,12 +692,43 @@ class StudioHandler(BaseHTTPRequestHandler):
 
     # ---------------- 静态资源提供 ----------------
 
-    def serve_file(self, file_path: Path):
+    def serve_file(self, file_path: Path, is_image=False, rel_image_path=""):
+        if is_image:
+            # 1. 本地源图片存在
+            if file_path.exists() and not file_path.is_dir():
+                return self.send_file_bytes(file_path)
+
+            # 2. 客户端缓存图片
+            cached_file = CACHE_IMG_DIR / rel_image_path
+            if cached_file.exists() and not cached_file.is_dir():
+                return self.send_file_bytes(cached_file)
+
+            # 3. 本地无此图（云端新增画风），从云端 CDN 拉取并持久化缓存在本地
+            cloud_url = f"{CLOUD_IMG_BASE_URL}{rel_image_path.replace(os.sep, '/')}"
+            try:
+                req = urllib.request.Request(cloud_url, headers={"User-Agent": "HandRawStudio-Client/1.0"})
+                with urllib.request.urlopen(req, timeout=8.0) as resp:
+                    if resp.status == 200:
+                        img_bytes = resp.read()
+                        cached_file.parent.mkdir(parents=True, exist_ok=True)
+                        cached_file.write_bytes(img_bytes)
+                        return self.send_raw_bytes(img_bytes, cached_file.suffix)
+            except Exception as e:
+                pass
+
+            # 4. 兜底默认风格图
+            fallback = IMAGES_DIR / "individual" / "FA" / "FA-001.webp"
+            if fallback.exists():
+                return self.send_file_bytes(fallback)
+
         if not file_path.exists() or file_path.is_dir():
             self.end_headers_with_cors(status=404)
             self.wfile.write(b"404 Not Found")
             return
 
+        self.send_file_bytes(file_path)
+
+    def send_file_bytes(self, file_path: Path):
         ctype, _ = mimetypes.guess_type(str(file_path))
         if not ctype:
             if file_path.suffix == ".webp":
@@ -634,15 +744,25 @@ class StudioHandler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", ctype)
             self.send_header("Content-Length", str(len(content)))
             self.send_header("Access-Control-Allow-Origin", "*")
-            self.send_header("Cache-Control", "public, max-age=3600" if "/images/" in str(file_path) else "no-cache")
+            self.send_header("Cache-Control", "public, max-age=86400" if "/images/" in str(file_path) else "no-cache")
             self.end_headers()
             self.wfile.write(content)
         except Exception as e:
             self.end_headers_with_cors(status=500)
             self.wfile.write(f"500 Internal Error: {e}".encode("utf-8"))
 
+    def send_raw_bytes(self, content: bytes, suffix: str):
+        ctype = "image/webp" if suffix == ".webp" else "application/octet-stream"
+        self.send_response(200)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(len(content)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Cache-Control", "public, max-age=86400")
+        self.end_headers()
+        self.wfile.write(content)
 
-def run_server(port=8765):
+
+def run_server(port=8765, no_browser=False):
     # 端口自增防冲突
     server = None
     target_port = port
@@ -664,15 +784,24 @@ def run_server(port=8765):
     print(f"🎨 HandRaw Style Studio 客户端已成功启动！")
     print(f"🌐 访问地址: {url}")
     print(f"📁 根目录: {ROOT_DIR}")
+    print(f"☁️ 云端同步源: {CLOUD_MANIFEST_URL}")
     print("=" * 60)
     print("提示：客户端正在运行，按 Ctrl+C 即可退出服务端。")
 
-    # 延迟 0.6 秒自动打开浏览器
-    def open_browser():
-        time.sleep(0.6)
-        webbrowser.open(url)
+    # 延迟 0.6 秒自动打开浏览器 (可通过 --no-browser 禁用)
+    if not no_browser:
+        def open_browser():
+            time.sleep(0.6)
+            webbrowser.open(url)
 
-    threading.Thread(target=open_browser, daemon=True).start()
+        threading.Thread(target=open_browser, daemon=True).start()
+
+    # 启动 1.5 秒后异步检测云端画风增量更新
+    def async_sync_probe():
+        time.sleep(1.5)
+        check_and_sync_cloud_data(force=False)
+
+    threading.Thread(target=async_sync_probe, daemon=True).start()
 
     try:
         server.serve_forever()
@@ -683,6 +812,10 @@ def run_server(port=8765):
 
 if __name__ == "__main__":
     p = 8765
-    if len(sys.argv) > 1 and sys.argv[1].isdigit():
-        p = int(sys.argv[1])
-    run_server(p)
+    no_b = False
+    for arg in sys.argv[1:]:
+        if arg.isdigit():
+            p = int(arg)
+        elif arg == "--no-browser":
+            no_b = True
+    run_server(port=p, no_browser=no_b)

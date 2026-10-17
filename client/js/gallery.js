@@ -32,6 +32,11 @@ export const Gallery = {
     await this.fetchData();
     this.bindEvents();
     this.render();
+
+    // 客户端启动 2.5 秒后静默探测一次云端是否有最新画风
+    setTimeout(() => {
+      this.syncCloudData(false);
+    }, 2500);
   },
 
   async fetchData() {
@@ -39,9 +44,59 @@ export const Gallery = {
       const resp = await fetch('/api/data');
       if (resp.ok) {
         this.data = await resp.json();
+        this.updateHeaderCounts();
       }
     } catch (e) {
       console.error('Failed to load gallery data:', e);
+    }
+  },
+
+  updateHeaderCounts() {
+    const stylesCount = this.data.total_styles || (this.data.styles && this.data.styles.length) || 331;
+    const layoutsCount = this.data.total_layouts || (this.data.layouts && this.data.layouts.length) || 166;
+    const colorsCount = this.data.total_colors || (this.data.colors && this.data.colors.length) || 36;
+
+    const elStyles = document.getElementById('tab-count-styles');
+    const elLayouts = document.getElementById('tab-count-layouts');
+    const elColors = document.getElementById('tab-count-colors');
+    const elCloud = document.getElementById('cloud-styles-count');
+
+    if (elStyles) elStyles.textContent = stylesCount;
+    if (elLayouts) elLayouts.textContent = layoutsCount;
+    if (elColors) elColors.textContent = colorsCount;
+    if (elCloud) elCloud.textContent = stylesCount;
+  },
+
+  async syncCloudData(manual = false) {
+    const cloudBtn = document.getElementById('btn-cloud-sync');
+    if (cloudBtn && manual) {
+      cloudBtn.innerHTML = `<span>⏳</span> 同步中...`;
+    }
+    try {
+      const resp = await fetch('/api/cloud-sync', { method: 'POST' });
+      if (resp.ok) {
+        const res = await resp.json();
+        if (res.synced) {
+          await this.fetchData();
+          this.render();
+          if (window.showToast) {
+            window.showToast(`🎉 成功同步云端新数据！画风总计 ${res.styles_count} 款（新增 ${res.new_styles || 0} 款）`, 'success', 5000);
+          }
+        } else if (manual) {
+          if (window.showToast) {
+            window.showToast(res.reason || `云端画风库已是最新状态 (${res.styles_count || 331} 款)`, 'info');
+          }
+        }
+      }
+    } catch (e) {
+      if (manual && window.showToast) {
+        window.showToast(`云端同步异常: ${e.message}`, 'error');
+      }
+    } finally {
+      if (cloudBtn) {
+        const cnt = this.data.total_styles || 331;
+        cloudBtn.innerHTML = `<span>☁️</span> 云端画风 (<span id="cloud-styles-count">${cnt}</span>)`;
+      }
     }
   },
 
@@ -422,5 +477,13 @@ export const Gallery = {
         this.setTab(tab);
       });
     });
+
+    // 云端画风库手动同步按钮
+    const cloudBtn = document.getElementById('btn-cloud-sync');
+    if (cloudBtn) {
+      cloudBtn.addEventListener('click', () => {
+        this.syncCloudData(true);
+      });
+    }
   }
 };
