@@ -345,8 +345,10 @@ def main() -> None:
         sys.path.insert(0, str(root / "scripts"))
         from build_markdown_galleries import build_layouts_md
         build_layouts_md()
+        from style_library_import import update_readme_and_skill_layouts
+        update_readme_and_skill_layouts(len(layouts))
     except Exception as exc:
-        print(f"Notice: build_layouts_md skipped: {exc}")
+        print(f"Notice: build_layouts_md / doc sync skipped: {exc}")
 
 
 if __name__ == "__main__":

@@ -18,7 +18,7 @@ import subprocess
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-STATIC_REPO_DIR = Path(r"E:\projectHome\handraw-static")
+STATIC_REPO_DIR = Path(os.environ.get("STATIC_REPO_DIR", str(ROOT_DIR.parent / "handraw-static")))
 
 REF_DIR = ROOT_DIR / "skills" / "handdraw-style-prompter" / "references"
 IMAGES_DIR = ROOT_DIR / "images"

@@ -47,6 +47,19 @@ When the user asks to manage, add, query, replace, or delete assets in the custo
 When the user asks to plan a photo shoot, create a photography project, generate shot lists, design couple/wedding/family/portrait/cosplay photography plans, or draw card for a themed shoot (例如“拍摄企划”、“情侣照”、“婚纱照”、“写真”、“全家福”、“Cosplay拍摄”、“抽卡”、“8宫格”、“摄影分镜”), read and invoke
 [couple-photo-orchestrator](skills/couple-photo-orchestrator/SKILL.md) before handling the request. It orchestrates the full pipeline from direction selection through Look design, scene micro-zones, pose-emotion planning, Share Card compilation, and 8-shot adaptive grid generation.
 
+When the user asks to share creations, post images and prompts to the community/forum, login/bind website account, view published posts, or edit/delete community topics (例如“分享到社区”、“发到论坛”、“查看我的帖子”、“删除我的帖子”、“绑定手绘风账号”、“登录网站账号”), read and invoke
+[community-share](skills/community-share/SKILL.md) before handling the request. It bridges the handraw-style.com Discourse account system, uploads images, constructs structured publication-grade topics, and manages user posts.
+
+When the user asks to add or import a named or text-defined visual style to the style library, register positive visual traits, or generate representative sample tiles for a new style (例如“添加画风”、“录入风格”、“新增手绘风格”、“自定义风格入库”), read and invoke
+[style-library-importer](skills/style-library-importer/SKILL.md) before handling the request. It processes style names and filtered positive traits, generates clean representative images, assigns the next style number, and updates metadata and contact sheets.
+
+When the user supplies an X/Twitter tweet link and asks to scrape, import, or convert tweet AI styles or `--sref` images into the numbered style library (例如“抓取推文画风”、“推文风格入库”、“导入Twitter风格”、“把这条推特录入到风格库”), read and invoke
+[tweet-style-importer](skills/tweet-style-importer/SKILL.md) before handling the request. It automatically extracts full-resolution images, generates 4-grid reference and clean single tiles, configures mandatory reference passing, and rebuilds the library.
+
+When the user asks to add a new visual layout or composition structure to the layout gallery (such as social cards, infographics, comic storyboards, IP cards, or e-commerce layouts; 例如“添加排版图型”、“录入新版式”、“导入排版”、“新增Layout”), read and invoke
+[layout-library-importer](skills/layout-library-importer/SKILL.md) before handling the request. It losslessly converts the reference image to WebP, records category metadata, creates bilingual prompt files, and updates the layout gallery.
+
+
 
 ## Default mode
 
@@ -60,7 +73,7 @@ Default to creating prompts only. Do not call an image-generation tool unless th
 > **【核心准则：每次由 AI 实时动态判断，严禁写死/机械套用】**
 > - **实时动态研判**：严禁在记忆、规则或提示词中维护任何“主题关键词 -> 固定风格编号/颜色编号”的静态死板映射（例如严禁一见节气/传统就推 268、一见自然就推 266、一见科技就推 011/054、一见生活就推 018）。
 > - **全库开放式匹配**：每次推荐必须由 AI 结合当前用户具体主题的深层语境、精神内核、视觉隐喻与画面构图，在全库 331 种手绘风格（#001–#331）与 36 种经典主题色（C-01–C-36）中进行**实时、开放式的审美推理与动态搭配**。
-> - **激发全库多样性**：同一个主题在不同设计视角下具备多维的美学可能性（如“菜园”既可以是水墨写意、也可以是田园木刻版画、粗粒油画棒、或包豪斯几何构成）。每次推荐都应根据具体切入点构思，充分展现全库 327 种画风与 36 种色彩的丰富生命力。
+> - **激发全库多样性**：同一个主题在不同设计视角下具备多维的美学可能性（如“菜园”既可以是水墨写意、也可以是田园木刻版画、粗粒油画棒、或包豪斯几何构成）。每次推荐都应根据具体切入点构思，充分展现全库 331 种画风与 36 种色彩的丰富生命力。
 > - **美学理由具象化**：AI 给出的美学推荐理由必须紧扣当前主题的视觉隐喻和画面构图，说明为什么该画风的笔触/质感与该色彩的情绪能完美传达这一主题，杜绝套话。
 
 1. **风格与主题色均未指定**：根据用户输入的主题语义、情感基调、受众与使用场景，由 AI 实时动态从 331 种手绘风格与 36 种经典单色库中推荐 1 组契合度最高的【风格编号 (#001–#331) + 主题色编号 (C-01–C-36)】组合。主题色数量不设死限，依据画面层次灵活决定单色统领、双色搭配（主色+点缀色）或三色调和，简述 1 句具象化美学推荐理由，并直接输出完整生图提示词（或执行出图）。
@@ -114,7 +127,7 @@ Users can browse `skills/handdraw-style-prompter/gallery/index.html` for numbere
 
 - A layout ID selects composition and text structure, not illustration style. Use its prompt file verbatim in the selected output language, then append the user's theme as the only source of subject matter and copy.
 - **排版图型的两大架构分类 (Dual Architecture of Layout Patterns)**：
-  本库全部 165 种排版图型在底层设计与执行机制上明确划分为两大类：
+  本库全部 166 种排版图型在底层设计与执行机制上明确划分为两大类：
   1. **确定性静态排版（纯文本直接拼接型 · Static Templates）**：
      - 包括绝大多数常规图型（如 `SC-001`~`SC-023` 社媒卡、`IG-001`~`IG-035` 信息图、`SB-001`~`SB-071` 漫画分镜、`IP-001`~`IP-013` IP设计、`EC-001`~`EC-024` 电商）。
      - 构图拓扑关系单一固定，生图模型能直白无误地理解。处理方式为拿来即用，直接提取其 prompt 模板并拼接指定画风与主题输出。
