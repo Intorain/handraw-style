@@ -29,23 +29,50 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-# 基础目录定位
-CLIENT_DIR = Path(__file__).resolve().parent
-ROOT_DIR = CLIENT_DIR.parent
-IMAGES_DIR = ROOT_DIR / "images"
-HISTORY_DIR = CLIENT_DIR / "history"
+# 基础目录定位 (自适应开发源码模式与 PyInstaller 打包分发模式)
+IS_FROZEN = getattr(sys, "frozen", False)
+if IS_FROZEN:
+    # 打包运行环境
+    EXE_DIR = Path(sys.executable).resolve().parent
+    BUNDLE_DIR = Path(getattr(sys, "_MEIPASS", EXE_DIR))
+    CLIENT_DIR = BUNDLE_DIR / "client" if (BUNDLE_DIR / "client").exists() else BUNDLE_DIR
+    ROOT_DIR = BUNDLE_DIR
+
+    # 用户可写目录（安装在 Program Files 时重定向至 LocalAppData，避免管理员权限冲突）
+    local_app_data = os.environ.get("LOCALAPPDATA") or os.environ.get("APPDATA")
+    USER_DATA_DIR = (Path(local_app_data) / "HandRawStyleStudio") if local_app_data else EXE_DIR
+else:
+    # 源码开发运行环境
+    CLIENT_DIR = Path(__file__).resolve().parent
+    ROOT_DIR = CLIENT_DIR.parent
+    USER_DATA_DIR = CLIENT_DIR
+
+# 静态素材与引用目录定位 (优先打包内置，后备源码路径)
+if (ROOT_DIR / "images").exists():
+    IMAGES_DIR = ROOT_DIR / "images"
+elif (CLIENT_DIR / "images").exists():
+    IMAGES_DIR = CLIENT_DIR / "images"
+else:
+    IMAGES_DIR = ROOT_DIR / "images"
+
+if (ROOT_DIR / "skills" / "handdraw-style-prompter" / "references").exists():
+    REFERENCES_DIR = ROOT_DIR / "skills" / "handdraw-style-prompter" / "references"
+elif (ROOT_DIR / "references").exists():
+    REFERENCES_DIR = ROOT_DIR / "references"
+else:
+    REFERENCES_DIR = CLIENT_DIR / "references"
+
+# 用户动态写入目录 (历史记录与增量缓存)
+HISTORY_DIR = USER_DATA_DIR / "history"
 HISTORY_FILE = HISTORY_DIR / "history.json"
 PARTNERS_FILE = CLIENT_DIR / "partners.json"
 VERSION_FILE = CLIENT_DIR / "version.json"
-CACHE_DIR = CLIENT_DIR / "cache"
+CACHE_DIR = USER_DATA_DIR / "cache"
 CACHE_IMG_DIR = CACHE_DIR / "images"
 
 # 云端同步与 CDN 地址
 CLOUD_MANIFEST_URL = "https://static.handraw-style.com/manifest.json"
 CLOUD_IMG_BASE_URL = "https://img.handraw-style.com/images/"
-
-# 引用数据定位
-REFERENCES_DIR = ROOT_DIR / "skills" / "handdraw-style-prompter" / "references"
 
 HISTORY_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
