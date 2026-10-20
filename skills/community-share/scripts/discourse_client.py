@@ -899,7 +899,7 @@ def cli_main():
             Path(__file__).resolve().parent / "sync_to_static.py",
             Path(__file__).resolve().parents[1] / "scripts" / "sync_to_static.py",
             Path(__file__).resolve().parents[2] / "scripts" / "sync_to_static.py",
-            Path("E:/handraw-style/scripts/sync_to_static.py"),
+            Path(os.environ.get("HANDRAW_STYLE_ROOT", Path(__file__).resolve().parents[1])) / "scripts" / "sync_to_static.py",
         ]
         sync_script = None
         for c in candidates:
