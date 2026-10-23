@@ -2015,6 +2015,23 @@
     "name_en": "Maze Detective High-Density Isometric Exploration Infographic"
   },
   {
+    "id": "IG-037",
+    "category": "infographic",
+    "name": "高精细手绘等距轴测地图信息图",
+    "image": "../../../images/layouts/infographics/IG-037.webp",
+    "prompt_file": "layouts/IG-037.md",
+    "keywords": [
+      "高精细手绘等距轴测地图信息图",
+      "等距轴测地图",
+      "旅游导览地图",
+      "鸟瞰微缩城市",
+      "地图信息图",
+      "线路图",
+      "景点打卡"
+    ],
+    "name_en": "High-Detail Isometric Travel Guide Map Infographic"
+  },
+  {
     "id": "IP-001",
     "category": "ip-character",
     "name": "IP定位卡",
