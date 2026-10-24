@@ -13,6 +13,53 @@ SCENES_JSON = SKILL / "references" / "scenes.json"
 OUTPUT_HTML = SKILL / "gallery" / "assets.html"
 REDIRECT_HTML = SKILL / "gallery" / "characters.html"
 
+IMAGE_FALLBACK_SCRIPT = """<script>
+(function() {
+  function fixImg(img) {
+    if (!img || img.__fixed) return;
+    var src = img.getAttribute('src') || '';
+    var idx = src.indexOf('images/');
+    if (idx === -1) return;
+    var sub = src.substring(idx);
+    var step = parseInt(img.dataset.retry || '0', 10);
+    var candidates = [
+      '../../../../' + sub,
+      '../../../' + sub,
+      '../../' + sub,
+      '../' + sub,
+      './' + sub,
+      '/' + sub,
+      'https://img.handraw-style.com/' + sub,
+      'https://raw.githubusercontent.com/yang0/handraw-style/master/' + sub
+    ];
+    while (step < candidates.length) {
+      var nextSrc = candidates[step];
+      step++;
+      if (nextSrc !== src) {
+        img.dataset.retry = step.toString();
+        img.src = nextSrc;
+        return;
+      }
+    }
+    img.__fixed = true;
+  }
+  window.addEventListener('error', function(e) {
+    if (e.target && e.target.tagName === 'IMG') {
+      fixImg(e.target);
+    }
+  }, true);
+  window.addEventListener('load', function(e) {
+    if (e.target && e.target.tagName === 'IMG') {
+      var card = e.target.closest('.style-card, .layout-card, .color-card, .asset-card, .picker-card');
+      if (card && e.target.src) {
+        card.dataset.image = e.target.src;
+      }
+    }
+  }, true);
+})();
+</script>"""
+
+
 
 def load_json_list(path: Path) -> list[dict[str, object]]:
     if not path.exists():
@@ -705,6 +752,7 @@ dialog#wechat-modal p {{ margin: 0 0 16px; font-size: 13.5px; color: #665f57; }}
   .char-grid {{ grid-template-columns: 1fr; }}
 }}
 </style>
+{IMAGE_FALLBACK_SCRIPT}
 </head>
 <body>
 <header class="sticky-header">

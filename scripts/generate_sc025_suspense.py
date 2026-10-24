@@ -8,7 +8,8 @@ import time
 import urllib.request
 from pathlib import Path
 
-OUTPUT_DIR = Path(r"E:\handraw-style\output\sc025-suspense-story")
+ROOT_DIR = Path(__file__).resolve().parent.parent
+OUTPUT_DIR = ROOT_DIR / "output" / "sc025-suspense-story"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 API_URL = "http://localhost:3000/v1/images/generations"

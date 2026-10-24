@@ -30,10 +30,13 @@ IMAGE_FALLBACK_SCRIPT = """<script>
     var sub = src.substring(idx);
     var step = parseInt(img.dataset.retry || '0', 10);
     var candidates = [
+      '../../../../' + sub,
+      '../../../' + sub,
+      '../../' + sub,
       '../' + sub,
       './' + sub,
-      '../../' + sub,
-      '../../../' + sub,
+      '/' + sub,
+      'https://img.handraw-style.com/' + sub,
       'https://raw.githubusercontent.com/yang0/handraw-style/master/' + sub
     ];
     while (step < candidates.length) {

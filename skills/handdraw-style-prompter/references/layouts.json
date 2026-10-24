@@ -2032,6 +2032,22 @@
     "name_en": "High-Detail Isometric Travel Guide Map Infographic"
   },
   {
+    "id": "IG-038",
+    "category": "infographic",
+    "name": "万能信息图",
+    "image": "../../../images/layouts/infographics/IG-038.webp",
+    "prompt_file": "layouts/IG-038.md",
+    "keywords": [
+      "万能信息图",
+      "万能信息图",
+      "信息图",
+      "通用信息图",
+      "万能版式",
+      "结构化图解"
+    ],
+    "name_en": "Universal Infographic"
+  },
+  {
     "id": "IP-001",
     "category": "ip-character",
     "name": "IP定位卡",
