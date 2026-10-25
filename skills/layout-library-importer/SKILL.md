@@ -55,6 +55,12 @@ When the user says `重建索引`, rebuild the layout gallery once from the accu
 
    The build script automatically regenerates `gallery/layouts.html`, updates `LAYOUTS.md` / `LAYOUTS_en.md`, and synchronizes layout totals and category counts across `README.md`, `README_en.md`, and all `SKILL.md` files. Do not manually edit the generated `gallery/layouts.html`. The gallery must remain browse-only: thumbnail, ID/name information, enlarged preview, and copy-prompt behavior; no input form.
 
+6. Synchronize client caches & mirrors:
+   Always ensure local desktop caches and mirror environments reflect the new layout entry:
+   - Copy `references/layouts.json` to `client/cache/layouts.json`.
+   - If `.agents/` mirror exists, ensure its `references/` and `gallery/layouts.html` are synchronized.
+   - When deploying to static site, verify that `https://handraw-style.com/gallery/layouts.html` returns HTTP 200 and includes the newly added layout ID.
+
 ## Validation
 
 Run this section after an explicit rebuild request. During batch input mode, only confirm that the current image, index entry, and prompt file exist and agree. For every newly added layout, also confirm that the indexed image path ends in `.webp` and that the WebP file exists. Existing legacy PNG assets are outside this migration step.

@@ -153,11 +153,11 @@ replaces complex text (文字替换与认知降负) / supplements text (内容�
 **生图提示词 (Prompt):**
 - **中文提示词**:
 ```text
-小红书信息图。排版：{layout_prompt}。纯净背景，大面积舒适留白，严禁桌椅、文具、咖啡杯等任何物理杂物摆设，严禁童话/小精灵角色，图表主体占满画幅90%以上。核心内容：{visual_metaphor_and_labels}。画风：{style_prompt}。色彩：{color_prompt}。画幅比例 4:3。
+小红书信息图。排版：{layout_prompt}。纯净背景，大面积舒适留白，严禁桌椅、文具、咖啡杯等任何物理杂物摆设，严禁童话/小精灵角色，图表主体占满画幅90%以上。核心内容：{visual_metaphor_and_labels}。严禁在画面文字中出现“新中式”、“东方”、“国潮”、“慢生活”等空洞风格标签，文案必须100%扎根具体业务与数据。画风：{style_prompt}。色彩：{color_prompt}。画幅规格：3:4 黄金画幅（1086x1448，严防 X 截断，横版图解则用 4:3）。
 ```
 - **English Prompt**:
 ```text
-Xiaohongshu infographic. Layout: {layout_prompt_en}. Clean background with generous negative space, strictly NO physical desks, stationery, coffee cups or props, strictly NO fairy/doll characters, chart fills over 90% of frame. Core content: {visual_metaphor_and_labels_en}. Style: {style_prompt_en}. Color palette: {color_prompt_en}. Aspect ratio: 4:3.
+Xiaohongshu infographic. Layout: {layout_prompt_en}. Clean background with generous negative space, strictly NO physical desks, stationery, coffee cups or props, strictly NO fairy/doll characters, chart fills over 90% of frame. Core content: {visual_metaphor_and_labels_en}. Strictly NO generic style slogans ('New Chinese', 'Eastern', 'Guochao') in text; keep copy grounded in real facts. Style: {style_prompt_en}. Color palette: {color_prompt_en}. Aspect ratio: 3:4 portrait (1086x1448 to prevent clipping on X; use 4:3 for landscape).
 ```
 ```
 
