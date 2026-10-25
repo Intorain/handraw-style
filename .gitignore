@@ -89,3 +89,10 @@ release/
 
 image_gen_config.json
 *config.local*
+# Private workspace experiments, motion graphics, and ad-hoc task scripts
+/work/
+/claude-motion/
+/plan-gallery-feishu.md
+/scripts/generate_sc025_suspense.py
+logs/
+*.log
