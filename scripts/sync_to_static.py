@@ -205,7 +205,7 @@ def deploy_to_vm():
     else:
         print("  [OK] 远程图片库已是最新，无需增量传输。")
 
-    # 保持 discourse/public 软链接
+    # 保持 discourse/public 软链接并自动重新编译公开画廊
     link_cmd = [
         "ssh", "-n", "tencent-vm",
         f"ln -sfn {remote_target}/gallery /home/yang0/projectHome/discourse/public/gallery && "
@@ -213,10 +213,14 @@ def deploy_to_vm():
         f"for f in {remote_target}/images/*; do "
         'bn=$(basename "$f"); '
         'if [ ! -e "/home/yang0/projectHome/discourse/public/images/$bn" ]; then ln -s "$f" "/home/yang0/projectHome/discourse/public/images/$bn"; fi; '
-        "done; true"
+        "done; "
+        'CURRENT_REL=$(cat /home/yang0/handraw-data/deployment/current 2>/dev/null || true); '
+        'if [ -n "$CURRENT_REL" ] && [ -d "/home/yang0/projectHome/handraw-web/.local/releases/$CURRENT_REL/plugin" ]; then '
+        '  python3 /home/yang0/projectHome/handraw-web/ops/build_public.py "/home/yang0/projectHome/handraw-web/.local/releases/$CURRENT_REL/plugin" "/home/yang0/handraw-data/public/releases/$CURRENT_REL" /home/yang0/projectHome/handraw-static; '
+        'fi; true'
     ]
     subprocess.run(link_cmd, check=True, stdin=subprocess.DEVNULL)
-    print("  [OK] manifest, data, gallery, images 及软链接已成功部署到 tencent-vm！")
+    print("  [OK] manifest, data, gallery, images 及公开画廊 overlay 已成功部署到 tencent-vm！")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Sync data to handraw-static")
