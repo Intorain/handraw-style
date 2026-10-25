@@ -153,24 +153,24 @@ def deploy_to_vm():
     print("\n=== 执行部署至 tencent-vm ===")
     remote_target = "/home/yang0/projectHome/handraw-static"
     # 创建远程目录
-    ssh_cmd = ["ssh", "tencent-vm", f"mkdir -p {remote_target}/data {remote_target}/images {remote_target}/gallery"]
-    subprocess.run(ssh_cmd, check=True)
+    ssh_cmd = ["ssh", "-n", "tencent-vm", f"mkdir -p {remote_target}/data {remote_target}/images {remote_target}/gallery"]
+    subprocess.run(ssh_cmd, check=True, stdin=subprocess.DEVNULL)
 
     # 传输 manifest 与 data
     scp_manifest = ["scp", str(STATIC_REPO_DIR / "manifest.json"), f"tencent-vm:{remote_target}/manifest.json"]
-    subprocess.run(scp_manifest, check=True)
+    subprocess.run(scp_manifest, check=True, stdin=subprocess.DEVNULL)
 
     scp_data = ["scp", "-r", f"{STATIC_REPO_DIR}/data/*", f"tencent-vm:{remote_target}/data/"]
-    subprocess.run(scp_data, check=True)
+    subprocess.run(scp_data, check=True, stdin=subprocess.DEVNULL)
 
     # 传输 gallery
     if (STATIC_REPO_DIR / "gallery").exists():
         scp_gallery = ["scp", "-r", f"{STATIC_REPO_DIR}/gallery/*", f"tencent-vm:{remote_target}/gallery/"]
-        subprocess.run(scp_gallery, check=True)
+        subprocess.run(scp_gallery, check=True, stdin=subprocess.DEVNULL)
 
     # 增量检测并同步远程 images
     local_img_dir = STATIC_REPO_DIR / "images"
-    res = subprocess.run(["ssh", "tencent-vm", f"find {remote_target}/images -type f"], capture_output=True, text=True)
+    res = subprocess.run(["ssh", "-n", "tencent-vm", f"find {remote_target}/images -type f"], capture_output=True, text=True, stdin=subprocess.DEVNULL)
     remote_files = set()
     prefix = f"{remote_target}/images/"
     for line in res.stdout.strip().splitlines():
@@ -193,21 +193,21 @@ def deploy_to_vm():
                 tar.add(local_img_dir / rel, arcname=rel)
 
         scp_tar = ["scp", str(tar_path), f"tencent-vm:/tmp/images_delta.tar"]
-        subprocess.run(scp_tar, check=True)
+        subprocess.run(scp_tar, check=True, stdin=subprocess.DEVNULL)
         tar_path.unlink(missing_ok=True)
 
         ssh_untar = [
-            "ssh", "tencent-vm",
+            "ssh", "-n", "tencent-vm",
             f"tar -xf /tmp/images_delta.tar -C {remote_target}/images/ && rm -f /tmp/images_delta.tar"
         ]
-        subprocess.run(ssh_untar, check=True)
+        subprocess.run(ssh_untar, check=True, stdin=subprocess.DEVNULL)
         print(f"  [OK] 已成功传输并解压 {len(missing_images)} 个新图片/资源！")
     else:
         print("  [OK] 远程图片库已是最新，无需增量传输。")
 
     # 保持 discourse/public 软链接
     link_cmd = [
-        "ssh", "tencent-vm",
+        "ssh", "-n", "tencent-vm",
         f"ln -sfn {remote_target}/gallery /home/yang0/projectHome/discourse/public/gallery && "
         f"ln -sfn {remote_target}/data /home/yang0/projectHome/discourse/public/data && "
         f"for f in {remote_target}/images/*; do "
@@ -215,7 +215,7 @@ def deploy_to_vm():
         'if [ ! -e "/home/yang0/projectHome/discourse/public/images/$bn" ]; then ln -s "$f" "/home/yang0/projectHome/discourse/public/images/$bn"; fi; '
         "done; true"
     ]
-    subprocess.run(link_cmd, check=True)
+    subprocess.run(link_cmd, check=True, stdin=subprocess.DEVNULL)
     print("  [OK] manifest, data, gallery, images 及软链接已成功部署到 tencent-vm！")
 
 if __name__ == "__main__":
