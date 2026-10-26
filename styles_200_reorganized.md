@@ -701,70 +701,70 @@
 
 | 编号 / 原参考名称 | 生图名称 | 核心视觉特征 |
 |---|---|---|
-| FI-001 · Apple / 苹果 | Apple Minimalist Tech Product Commercial Photography | 极简构图；科技冷白与中性灰；精确柔和布光；细腻通透材质质感；纯净纯色背景与精准镜面倒影。 |
+| FI-001 · Apple / 苹果 | Apple Minimalist Tech Product Commercial Photography | 科技品牌极简商业摄影 |
 
-| FI-002 · MUJI / 无印良品 | MUJI Japanese Naturalist Warm Home Photography | 日式自然主义；白灰与温暖原木调；大面积柔和漫射自然光；低对比通透影调；质朴哑光材质肌理；克制极简留白空间。 |
+| FI-002 · MUJI / 无印良品 | MUJI Japanese Naturalist Warm Home Photography | 日式自然主义家居品牌摄影 |
 
-| FI-003 · IKEA / 宜家 | IKEA Nordic Cozy Lifestyle Interior Photography | 北欧自然明亮影调；温暖亲切的高明度色彩；均匀漫射自然光；真实生活氛围感；松弛柔和景深。 |
+| FI-003 · IKEA / 宜家 | IKEA Nordic Cozy Lifestyle Interior Photography | 北欧温馨日常家居品牌摄影 |
 
-| FI-004 · Aesop / 伊索 | Aesop Earthy Terrazzo Minimalist Botanical Space Photography | 大地色系与低饱和暖褐矿物调；静谧克制极简构图；粗粝微孔哑光肌理；幽暗温润漫射微光；深邃空间层次与阴翳美学。 |
+| FI-004 · Aesop / 伊索 | Aesop Earthy Terrazzo Minimalist Botanical Space Photography | 澳洲极简矿物美学品牌空间摄影 |
 
-| FI-005 · Nike / 耐克 | Nike Dynamic Athletic Action & Dramatic Contrast Photography | 高速快门动态抓拍瞬间；高反差戏剧性硬光与强明暗雕刻；高张力斜角构图；微动态运动模糊与质感颗粒；力量爆发感。 |
+| FI-005 · Nike / 耐克 | Nike Dynamic Athletic Action & Dramatic Contrast Photography | 运动品牌高对比高动态广告摄影 |
 
-| FI-006 · Patagonia / 巴塔哥尼亚 | Patagonia Rugged Wilderness & Extreme Outdoor Documentary | 原生态纪实影调；粗粝胶片颗粒与真实质感；冷峻自然环境光；深沉大地与冷蓝冷暖对比；广角深景深与硬核现场感。 |
+| FI-006 · Patagonia / 巴塔哥尼亚 | Patagonia Rugged Wilderness & Extreme Outdoor Documentary | 户外探险品牌原生态自然纪实摄影 |
 
-| FI-007 · Gucci / 古驰 | Gucci 1970s Vintage Glamour Cinematic Editorial Photography | 1970年代复古胶片感；浓郁暖金与宝石高饱和色彩；戏剧性油画感光影；奢华华丽氛围；复古颗粒与柔焦光晕。 |
+| FI-007 · Gucci / 古驰 | Gucci 1970s Vintage Glamour Cinematic Editorial Photography | 意大利奢侈品牌1970年代复古时尚大片 |
 
-| FI-008 · Jacquemus / 雅克慕斯 | Jacquemus French Riviera Sun-Drenched Minimal Fashion Photography | 高饱和烈日强光与直射硬阴影；纯净大色块撞色；极简几何超大留白构图；低角度仰拍超现实张力；清澈明亮通透色调。 |
+| FI-008 · Jacquemus / 雅克慕斯 | Jacquemus French Riviera Sun-Drenched Minimal Fashion Photography | 法国极简阳光时装大片摄影 |
 
-| FI-009 · National Geographic / 国家地理 | National Geographic Epic Wildlife & Cultural Documentary Photography | 史诗级纪实摄影；极致丰富的光影层次与暗部细节；油画般生动扎实的质感；宏大深邃景深；真实原生态现场感与强烈视觉冲击。 |
+| FI-009 · National Geographic / 国家地理 | National Geographic Epic Wildlife & Cultural Documentary Photography | 美国自然探索与人文纪实摄影杂志 |
 
-| FI-010 · Vogue / 时尚杂志 | Vogue Haute Couture Dramatic Lighting Fashion Editorial | 时尚大片影调；电影级戏剧性定向布光；强明暗反差与雕塑感光影；高级奢华质感；前卫构图张力与细腻细节。 |
+| FI-010 · Vogue / 时尚杂志 | Vogue Haute Couture Dramatic Lighting Fashion Editorial | 国际高级时装大片与戏剧光影杂志 |
 
-| FI-011 · Kinfolk | Kinfolk Slow-Living Low-Saturation Natural Light Photography | 极低饱和度清冷中性色调；柔和侧漫射自然光影；克制大面积留白；平视极简构图；细腻哑光肌理与呼吸感空气层次。 |
+| FI-011 · Kinfolk | Kinfolk Slow-Living Low-Saturation Natural Light Photography | 低饱和慢生活方式独立杂志摄影 |
 
-| FI-012 · Wallpaper* | Wallpaper* Architectural Modernist Geometric Interior Photography | 极简几何构图与严谨透视；冷静克制的中性灰调；硬朗线条与利落光影切角；宏大秩序感；深景深平立面质感。 |
+| FI-012 · Wallpaper* | Wallpaper* Architectural Modernist Geometric Interior Photography | 英国现代建筑与几何室内设计杂志摄影 |
 
-| FI-013 · i-D | i-D Raw Youth Subculture Direct-Flash Portrait Photography | 机顶硬直闪光线与强烈边缘投影；生猛粗糙胶片噪点；高对比冷暖撞色；不羁纪实抓拍质感；饱满近景张力。 |
+| FI-013 · i-D | i-D Raw Youth Subculture Direct-Flash Portrait Photography | 英国青年街头亚文化硬直闪肖像杂志 |
 
-| FI-014 · Dazed | Dazed Avant-Garde Experimental Fashion & Expressive Mood Photography | 先锋实验视觉语言；戏剧性奇特角度与非常规透视；高饱和怪诞光影与滤镜色彩；强烈情绪氛围感；前卫反叛视觉冲击。 |
+| FI-014 · Dazed | Dazed Avant-Garde Experimental Fashion & Expressive Mood Photography | 英国前卫实验时尚与青年文化杂志 |
 
-| FI-015 · The Gentlewoman | The Gentlewoman Restrained Monochrome Modern Female Portrait | 克制沉静黑白影调；中灰过渡细腻柔润；经典中景平视肖像；极简无修饰自然光；内敛从容的高级质感。 |
+| FI-015 · The Gentlewoman | The Gentlewoman Restrained Monochrome Modern Female Portrait | 英国克制现代女性黑白肖像杂志 |
 
-| FI-016 · Annie Leibovitz / 安妮·莱博维茨 | Annie Leibovitz Cinematic Staged Narrative Portrait Photography | 大片级叙事构图；伦勃朗式深邃戏剧光；冷暖环境光交织；油画般浑厚色彩与质感层次；宏大置景现场感与电影级氛围。 |
+| FI-016 · Annie Leibovitz / 安妮·莱博维茨 | Annie Leibovitz Cinematic Staged Narrative Portrait Photography | 美国电影感置景与叙事肖像摄影大师 |
 
-| FI-017 · Richard Avedon / 理查德·阿维顿 | Richard Avedon Stark White Studio Pure Black-and-White Portrait | 极纯无缝白底背景；纯粹黑白高反差影调；均匀无死角明亮影棚光；剔除环境干扰的极简居中构图；极高解析度与真实表面纹理。 |
+| FI-017 · Richard Avedon / 理查德·阿维顿 | Richard Avedon Stark White Studio Pure Black-and-White Portrait | 美国无缝纯白影棚纯黑白肖像摄影大师 |
 
-| FI-018 · Peter Lindbergh / 彼得·林德伯格 | Peter Lindbergh Natural Raw Windblown Monochrome Fashion Photography | 纯粹经典黑白胶片感；微颗粒粗粝质感；自然漫射光与低对比灰阶过渡；未加修饰的真实质朴感；深沉从容的人文力量。 |
+| FI-018 · Peter Lindbergh / 彼得·林德伯格 | Peter Lindbergh Natural Raw Windblown Monochrome Fashion Photography | 德国素颜自然人文黑白时尚摄影大师 |
 
-| FI-019 · Helmut Newton / 赫尔穆特·牛顿 | Helmut Newton High-Contrast Bold Monochrome Seductive Noir | 高反差黑白硬调；强烈直线条硬光与深邃暗阴影；锐利剪影轮廓；冷峻强势构图；金属与亮面光泽质感。 |
+| FI-019 · Helmut Newton / 赫尔穆特·牛顿 | Helmut Newton High-Contrast Bold Monochrome Seductive Noir | 德裔澳大利亚黑白高反差冷艳时尚摄影大师 |
 
-| FI-020 · Steve McCurry / 史蒂夫·麦凯瑞 | Steve McCurry Saturated Soulful Humanist Cultural Portrait | 高饱和浓郁胶片色彩；极具穿透力的高光与定向面光聚焦；细腻丰富的环境质感层次；浅景深虚化背景；深沉温厚的人文纪实影调。 |
+| FI-020 · Steve McCurry / 史蒂夫·麦凯瑞 | Steve McCurry Saturated Soulful Humanist Cultural Portrait | 美国国家地理人文摄影大师，代表作：《阿富汗少女》 |
 
-| FI-021 · Martin Parr / 马丁·帕尔 | Martin Parr Saturated Direct-Flash Satirical Everyday Documentary | 高饱和艳丽过曝色彩；白天强烈直闪与生硬边缘黑影；超近特写或非常规构图截取；反差讽刺的纪实抓拍质感；鲜明高调质感。 |
+| FI-021 · Martin Parr / 马丁·帕尔 | Martin Parr Saturated Direct-Flash Satirical Everyday Documentary | 英国高饱和直闪讽刺日常纪实摄影大师，玛格南图片社成员 |
 
-| FI-022 · Gregory Crewdson / 格雷戈里·克鲁德森 | Gregory Crewdson Twilight Cinematic Mystery Staged Photography | 电影大片级精密人工布光；蓝调时刻冷光与室内暖光强烈对冲；大景深静止叙事构图；神秘幽暗悬疑氛围；薄雾与微光粒子感。 |
+| FI-022 · Gregory Crewdson / 格雷戈里·克鲁德森 | Gregory Crewdson Twilight Cinematic Mystery Staged Photography | 美国电影级大型置景戏剧摄影大师，代表作：《黄昏》《玫瑰之下》 |
 
-| FI-023 · Saul Leiter / 索尔·莱特 | Saul Leiter Poetic Rainy Street & Window Reflection Color Photography | 诗意胶片色彩；透过水汽玻璃或前景遮挡的重叠景深；大面积失焦色块与朦胧倒影；非常规留白与压缩空间构图；浓郁暗红色与墨色点缀。 |
+| FI-023 · Saul Leiter / 索尔·莱特 | Saul Leiter Poetic Rainy Street & Window Reflection Color Photography | 美国诗意街头倒影与彩色胶片摄影先驱，代表作：《Early Color》 |
 
-| FI-024 · Slim Aarons / 斯利姆·亚伦斯 | Slim Aarons Luxurious Poolside Resort & Villa High-Society Photography | 1960-70年代明媚复古胶片感；高明度清透阳光；蔚蓝与暖白黄高调撞色；大景深开阔全景构图；从容松弛的优雅上流氛围。 |
+| FI-024 · Slim Aarons / 斯利姆·亚伦斯 | Slim Aarons Luxurious Poolside Resort & Villa High-Society Photography | 美国复古名流度假摄影大师，代表作：《池畔闲谈》(Poolside Gossip) |
 
-| FI-025 · Daido Moriyama / 森山大道 | Daido Moriyama Grainy High-Contrast Noir Street Photography | 极致粗糙黑白银盐颗粒；极限高反差（纯黑与死白）；动态晃动模糊与脱焦失真；倾斜抓拍视角；粗粝生猛的黑白光斑冲击。 |
+| FI-025 · Daido Moriyama / 森山大道 | Daido Moriyama Grainy High-Contrast Noir Street Photography | 日本粗颗粒高反差黑白街头摄影大师，代表作：《野犬》《新宿》 |
 
-| FI-026 · Andreas Gursky / 安德烈亚斯·古尔斯基 | Andreas Gursky Monumental Scale Repetitive Geometric Architecture Photography | 超大画幅上帝俯视全景；严密网格化与对称重复几何结构；全局均等清晰无虚化（大景深）；密集细微元素形成的宏大秩序美学；冷静客观的距离感。 |
+| FI-026 · Andreas Gursky / 安德烈亚斯·古尔斯基 | Andreas Gursky Monumental Scale Repetitive Geometric Architecture Photography | 德国超大画幅上帝视角几何秩序摄影大师，代表作：《莱茵河二号》《99美分》 |
 
-| FI-027 · Wes Anderson / 韦斯·安德森 | Wes Anderson Pastel Symmetry & Retro Whimsical Cinematic Aesthetic | 低饱和马卡龙与粉彩暖调；绝对严谨轴对称居中构图；复古平面化景深；暖黄与粉蓝/粉红克制撞色；精致秩序感与超现实童话色调。 |
+| FI-027 · Wes Anderson / 韦斯·安德森 | Wes Anderson Pastel Symmetry & Retro Whimsical Cinematic Aesthetic | 美国对称美学与马卡龙色调电影导演，代表作：《布达佩斯大饭店》《月升王国》 |
 
-| FI-028 · Wong Kar-wai / 王家卫 | Wong Kar-wai Hong Kong Retro Neon Glow Atmospheric Cinematic Mood | 浓郁复古胶片色调；翡翠绿与洋红冷暖霓虹光晕；慢门拖影与低帧率抽帧模糊；微暗阴影与潮湿反光；暧昧摇曳的情绪氛围。 |
+| FI-028 · Wong Kar-wai / 王家卫 | Wong Kar-wai Hong Kong Retro Neon Glow Atmospheric Cinematic Mood | 中国香港复古港风与霓虹光影电影导演，代表作：《花样年华》《重庆森林》《堕落天使》 |
 
-| FI-029 · Stanley Kubrick / 斯坦利·库布里克 | Stanley Kubrick One-Point Perspective Cold Symmetrical Sci-Fi Cinema | 极致严谨的一点透视中心消失点构图；几何绝对对称；冷峻克制色调与强纵深感；广角深景深无畸变；压迫感超现实理性秩序。 |
+| FI-029 · Stanley Kubrick / 斯坦利·库布里克 | Stanley Kubrick One-Point Perspective Cold Symmetrical Sci-Fi Cinema | 美国一点透视与冷峻理性科幻电影导演，代表作：《2001太空漫游》《闪灵》 |
 
-| FI-030 · David Fincher / 大卫·芬奇 | David Fincher Desaturated Moody Green-Toned Precision Thriller Cinema | 低饱和克制冷暗调；标志性冷绿与黄绿偏色阴影；精密严谨几何构图与微弱低光布光；深邃暗部层次；压抑冷冽的心理悬疑氛围。 |
+| FI-030 · David Fincher / 大卫·芬奇 | David Fincher Desaturated Moody Green-Toned Precision Thriller Cinema | 美国低饱和冷调心理悬疑电影导演，代表作：《七宗罪》《搏击俱乐部》《消失的爱人》 |
 
-| FI-031 · 淘宝电商图 / Taobao E-Commerce | Taobao E-Commerce Product Commercial Photography | 商业级高保真摄影；均匀通透无影布光；纯净明亮背景；极致细腻材质与纹理还原；高清晰度居中构图；真实色彩还原度。 |
+| FI-031 · 淘宝电商图 / Taobao E-Commerce | Taobao E-Commerce Product Commercial Photography |  |
 
-| FI-032 · iPhone 17 随手拍 / iPhone 17 Snapshot | iPhone 17 Candid Everyday Snapshot Photography | 原相机直出随手抓拍感；高动态范围（HDR）自然光比；细腻无涂抹表面材质；轻微自然边缘光学虚化；现场真实色温与无过度滤镜生活纪实质感。 |
+| FI-032 · iPhone 17 随手拍 / iPhone 17 Snapshot | iPhone 17 Candid Everyday Snapshot Photography |  |
 
-| FI-033 · 监控摄像头截屏 / Security Camera Screenshot | Security Camera CCTV & Doorbell Surveillance Footage Photography | 广角鱼眼镜头畸变；高位俯角或低位仰角安全监控视角；低码率数字视频噪点与扫描线质感；微弱夜视红外单色或灰阶绿调；角落附带细微白色时间戳与录制字符UI；冷峻疏离监控质感。 |
+| FI-033 · 监控摄像头截屏 / Security Camera Screenshot | Security Camera CCTV & Doorbell Surveillance Footage Photography | 安防监控摄像头广角鱼眼与夜视真实视频录像截屏 |
 
-| FI-034 · 大疆无人机航拍 / DJI Drone Aerial | DJI Drone Cinematic Aerial Landscape Photography | 正垂直鸟瞰（90度俯视）或大广角高空俯拍视角；超大视域开阔构图；极致纯净通透画质；宏大空间几何线条与秩序纹理；微缩比例景深；电影级壮丽全景光影。 |
+| FI-034 · 大疆无人机航拍 / DJI Drone Aerial | DJI Drone Cinematic Aerial Landscape Photography | 大疆无人机高清高空俯拍与全景航拍摄影 |
