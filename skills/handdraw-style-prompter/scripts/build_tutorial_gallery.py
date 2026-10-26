@@ -447,7 +447,7 @@ dialog::backdrop{{background:#000a}}
 {IMAGE_FALLBACK_SCRIPT}
 </head><body>
 <header class="sticky-header">
-<nav class="site-nav" aria-label="画廊导航"><a href="index.html" data-i18n="stylesNav">风格画廊</a><a href="layouts.html" data-i18n="layoutsNav">图型画廊</a><a href="colors.html" data-i18n="colorsNav">色彩画廊</a><a href="assets.html" data-i18n="assetsNav">自建图库</a><a href="tutorials.html" aria-current="page" data-i18n="tutorialsNav">提示词</a><div class="nav-right"><a class="nav-ext" href="https://github.com/yang0/handraw-style" target="_blank" rel="noopener noreferrer" title="GitHub 仓库"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a><a class="nav-ext" href="https://x.com/yang02010" target="_blank" rel="noopener noreferrer" title="X (Twitter) @yang02010"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X (@yang02010)</a><button class="nav-btn" id="wechat-btn" type="button" data-i18n="wechatBtn">💬 创作变现交流群</button><button class="nav-btn" id="lang-btn" type="button" aria-label="Switch Language">🌐 EN / 中</button></div></nav>
+<nav class="site-nav" aria-label="画廊导航"><a href="index.html" data-i18n="stylesNav">风格画廊</a><a href="layouts.html" data-i18n="layoutsNav">图型画廊</a><a href="colors.html" data-i18n="colorsNav">色彩画廊</a><a href="assets.html" data-i18n="assetsNav">自建图库</a><a href="tutorials.html" aria-current="page" data-i18n="tutorialsNav">提示词</a><div class="nav-right"><a class="nav-ext" href="https://github.com/yang0/handraw-style" target="_blank" rel="noopener noreferrer" title="GitHub 仓库"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a><a class="nav-ext" href="https://x.com/yang02010" target="_blank" rel="noopener noreferrer" title="X (Twitter) @yang02010"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X (@yang02010)</a><button class="nav-btn" id="lang-btn" type="button" aria-label="Switch Language">🌐 EN / 中</button></div></nav>
 </header>
 <main>
 <!-- Prompt Assembler Studio -->
@@ -708,7 +708,7 @@ dialog::backdrop{{background:#000a}}
             <div class="slot-card" id="slot-char-style" hidden>
               <div class="slot-header">
                 <span class="slot-title">🎭 <span data-i18n="slotCharStyle">角色风格</span></span>
-                <span class="slot-optional" data-i18n="optionalCharStyle">可选 (风格/写实)</span>
+                <span class="slot-optional" data-i18n="optionalCharStyle">可选 ({styles_count})</span>
               </div>
               <button type="button" class="slot-trigger" data-picker="char-style">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 1 0 9 10 10 0 0 1 0-18z"/></svg>
@@ -731,7 +731,7 @@ dialog::backdrop{{background:#000a}}
             <div class="slot-card" id="slot-scene-style" hidden>
               <div class="slot-header">
                 <span class="slot-title">🌄 <span data-i18n="slotSceneStyle">场景风格</span></span>
-                <span class="slot-optional" data-i18n="optionalSceneStyle">可选 (风格/写实)</span>
+                <span class="slot-optional" data-i18n="optionalSceneStyle">可选 ({styles_count})</span>
               </div>
               <button type="button" class="slot-trigger" data-picker="scene-style">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -859,8 +859,7 @@ dialog::backdrop{{background:#000a}}
   </div>
 </dialog>
 
-<!-- WeChat QR Modal -->
-<dialog id="wechat-modal" aria-labelledby="wechat-title" style="width:min(94vw,560px);padding:22px;border:0;border-radius:14px;background:#1e1b18;color:#fff;box-shadow:0 20px 70px #000a;text-align:center"><button class="close" type="button" aria-label="关闭" style="position:absolute;top:12px;right:12px;border:0;border-radius:7px;padding:5px 9px;background:#fff;color:#24211e;cursor:pointer;font:inherit">关闭 ×</button><h3 id="wechat-title" style="margin:4px 0 10px;font-size:17px;color:#fff" data-i18n="wechatTitle">💬 创作变现交流群</h3><p style="margin:0 0 4px;font-size:14px;color:#eee" data-i18n="wechatSub">请优先加群，满了的话也可以尝试加我个人微信</p><p style="margin:0 0 16px;font-size:13px;color:#d67d4d;font-weight:600" data-i18n="wechatNote">请备注：手绘</p><div style="display:flex;justify-content:center;align-items:flex-start;gap:24px;flex-wrap:wrap"><div style="flex:1 1 200px;max-width:240px;background:#fff;padding:10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.3)"><div style="color:#24211e;font-size:13px;font-weight:700;margin-bottom:6px" data-i18n="wechatGroupLabel">① 优先加入群聊</div><img src="../../../images/wechat_group.png" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/yang0/handraw-style/master/images/wechat_group.png';" alt="手绘交流群二维码" style="display:block;width:100%;height:auto;border-radius:6px"></div><div style="flex:1 1 200px;max-width:240px;background:#fff;padding:10px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.3)"><div style="color:#24211e;font-size:13px;font-weight:700;margin-bottom:6px" data-i18n="wechatPersonalLabel">② 个人微信备用</div><img src="../../../images/wechat_personal.png" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/yang0/handraw-style/master/images/wechat_personal.png';" alt="旺德福个人微信二维码" style="display:block;width:100%;height:auto;border-radius:6px"></div></div><div style="margin-top:16px;padding-top:12px;border-top:1px solid #332f2b;display:flex;justify-content:center;gap:16px;font-size:13px"><a href="https://github.com/yang0/handraw-style" target="_blank" rel="noopener noreferrer" style="color:#d67d4d;text-decoration:none;font-weight:600">GitHub 仓库 ↗</a><a href="https://x.com/yang02010" target="_blank" rel="noopener noreferrer" style="color:#d67d4d;text-decoration:none;font-weight:600">X @yang02010 ↗</a></div></dialog>
+
 
 <script src="../../../images/custom/custom_assets.js" onerror="window.CUSTOM_ASSETS_DATA=null;"></script>
 <script>
@@ -892,7 +891,7 @@ const COLORS_DATA = {colors_json_str};
 const COLOR_CATEGORIES = {color_categories_json_str};
 const TONES_DATA = {tones_json_str};
 
-const wechatBtn=document.querySelector('#wechat-btn'),wechatModal=document.querySelector('#wechat-modal'),langBtn=document.querySelector('#lang-btn');
+const langBtn=document.querySelector('#lang-btn');
 const inputTheme=document.querySelector('#input-theme'),themeLabelText=document.querySelector('#theme-label-text'),inputAudience=document.querySelector('#input-audience'),inputChannel=document.querySelector('#input-channel'),posterExtraFields=document.querySelector('#poster-extra-fields');
 const inputShootType=document.querySelector('#input-shoot-type'),photoExtraFields=document.querySelector('#photo-extra-fields'),btnClearShootType=document.querySelector('#btn-clear-shoot-type');
 const inputRatio=document.querySelector('#input-ratio'),btnClearRatio=document.querySelector('#btn-clear-ratio');
@@ -924,15 +923,7 @@ let isToneActive = false;
 let isBatchActive = false;
 let isMixLayoutsActive = false;
 
-const REALISTIC_ITEM = {{
-  id: 'realistic',
-  isRealistic: true,
-  group: 'FI',
-  name: '写实',
-  name_en: 'Realistic',
-  ref: '写实摄影 / 真实电影质感摄影',
-  img: '../../../images/realistic.webp'
-}};
+
 
 const I18N = {{
   zh: {{
@@ -942,7 +933,6 @@ const I18N = {{
     colorsNav: "色彩画廊",
     assetsNav: "自建图库",
     tutorialsNav: "提示词",
-    wechatBtn: "💬 创作变现交流群",
     assemblerTitle: "🛠️ 提示词拼装器",
     assemblerSub: "交互式点选图型、风格与色彩，实时拼装出图指令。",
     fusionCheckboxLabel: "风格融合",
@@ -1033,15 +1023,15 @@ const I18N = {{
     optional: "可选",
     optionalAsset: "可选 ({assets_count})",
     optionalLayout: "可选 ({layouts_count})",
-    optionalStyle: "可选 ({styles_count} / 写实)",
-    optionalCharStyle: "可选 (风格/写实)",
-    optionalSceneStyle: "可选 (风格/写实)",
+    optionalStyle: "可选 ({styles_count})",
+    optionalCharStyle: "可选 ({styles_count})",
+    optionalSceneStyle: "可选 ({styles_count})",
     optionalColor: "可选 (36)",
     optionalTone: "可选 ({tones_count}) · 多选",
     layoutNotApplicable: "不适用",
     pickAssetText: "按图选择自建资产",
     pickLayoutText: "按图选择图型 ({layouts_count})",
-    pickStyleText: "按图选择风格 / 写实 ({styles_count})",
+    pickStyleText: "按图选择风格 ({styles_count})",
     pickCharStyleText: "按图选择角色风格",
     pickSceneStyleText: "按图选择场景风格",
     pickColorText: "按图选择主题色 (36)",
@@ -1057,7 +1047,7 @@ const I18N = {{
     searchPlaceholder: "输入编号或名称过滤...",
     pickerTitleAsset: "选择视觉资产（角色 / 道具 / 场景）",
     pickerTitleLayout: "选择图型 ({layouts_count})",
-    pickerTitleStyle: "选择手绘与写实风格 ({styles_count})",
+    pickerTitleStyle: "选择视觉风格 ({styles_count})",
     pickerTitleCharStyle: "选择角色风格",
     pickerTitleSceneStyle: "选择场景风格",
     styleConflictAlert: "角色风格与场景风格必须不同，请选择不同的风格！",
@@ -1087,11 +1077,6 @@ const I18N = {{
     articlePathEmptyText: "【输入文件或文件夹地址】",
     audienceEmptyText: "【输入受众】",
     channelEmptyText: "【输入海报投放渠道】",
-    wechatTitle: "💬 创作变现交流群",
-    wechatSub: "请优先加群，满了的话也可以尝试加我个人微信",
-    wechatNote: "请备注：手绘",
-    wechatGroupLabel: "① 优先加入群聊",
-    wechatPersonalLabel: "② 个人微信备用",
     langBtn: "🌐 English"
   }},
   en: {{
@@ -1101,7 +1086,6 @@ const I18N = {{
     colorsNav: "Colors",
     assetsNav: "Custom Library",
     tutorialsNav: "Prompts",
-    wechatBtn: "💬 Creator Community",
     assemblerTitle: "🛠️ Prompt Assembler",
     assemblerSub: "Visually select layout, style, and color to assemble prompt commands in real time.",
     fusionCheckboxLabel: "Style Fusion",
@@ -1192,15 +1176,15 @@ const I18N = {{
     optional: "Optional",
     optionalAsset: "Optional ({assets_count})",
     optionalLayout: "Optional ({layouts_count})",
-    optionalStyle: "Optional ({styles_count} / Realistic)",
-    optionalCharStyle: "Optional (Style/Realistic)",
-    optionalSceneStyle: "Optional (Style/Realistic)",
+    optionalStyle: "Optional ({styles_count})",
+    optionalCharStyle: "Optional ({styles_count})",
+    optionalSceneStyle: "Optional ({styles_count})",
     optionalColor: "Optional (36)",
     optionalTone: "Optional ({tones_count}) · Multi",
     layoutNotApplicable: "N/A",
     pickAssetText: "Pick Custom Asset",
     pickLayoutText: "Pick Layout ({layouts_count})",
-    pickStyleText: "Pick Style / Realistic ({styles_count})",
+    pickStyleText: "Pick Style ({styles_count})",
     pickCharStyleText: "Pick Character Style",
     pickSceneStyleText: "Pick Scene Style",
     pickColorText: "Pick Theme Color (36)",
@@ -1216,7 +1200,7 @@ const I18N = {{
     searchPlaceholder: "Search ID or name...",
     pickerTitleAsset: "Select Visual Asset (Character / Prop / Scene)",
     pickerTitleLayout: "Select Layout ({layouts_count})",
-    pickerTitleStyle: "Select Style / Realistic ({styles_count})",
+    pickerTitleStyle: "Select Visual Style ({styles_count})",
     pickerTitleCharStyle: "Select Character Style",
     pickerTitleSceneStyle: "Select Scene Style",
     styleConflictAlert: "Character style and scene style must be different!",
@@ -1246,11 +1230,6 @@ const I18N = {{
     articlePathEmptyText: "[Enter File or Folder Path]",
     audienceEmptyText: "[Enter Audience]",
     channelEmptyText: "[Enter Channel]",
-    wechatTitle: "💬 Creator Monetization Community",
-    wechatSub: "Please prioritize joining the group; if full, try adding personal WeChat",
-    wechatNote: "Note: handdraw",
-    wechatGroupLabel: "① Join Group (Priority)",
-    wechatPersonalLabel: "② Personal WeChat (Fallback)",
     langBtn: "🌐 中文"
   }}
 }};
@@ -1387,17 +1366,14 @@ function updatePrompt() {{
   // Style(s)
   if (isFusionActive) {{
     if (selectedCharStyle) {{
-      const charName = selectedCharStyle.isRealistic ? (isZh ? '写实' : 'Realistic') : selectedCharStyle.id;
-      parts.push(isZh ? `角色风格：${{charName}}` : `Character style: ${{charName}}`);
+      parts.push(isZh ? `角色风格：${{selectedCharStyle.id}}` : `Character style: ${{selectedCharStyle.id}}`);
     }}
     if (selectedSceneStyle) {{
-      const sceneName = selectedSceneStyle.isRealistic ? (isZh ? '写实' : 'Realistic') : selectedSceneStyle.id;
-      parts.push(isZh ? `场景风格：${{sceneName}}` : `Scene style: ${{sceneName}}`);
+      parts.push(isZh ? `场景风格：${{selectedSceneStyle.id}}` : `Scene style: ${{selectedSceneStyle.id}}`);
     }}
   }} else {{
     if (selectedStyle) {{
-      const styleName = selectedStyle.isRealistic ? (isZh ? '写实' : 'Realistic') : selectedStyle.id;
-      parts.push(isZh ? `风格：${{styleName}}` : `Style: ${{styleName}}`);
+      parts.push(isZh ? `风格：${{selectedStyle.id}}` : `Style: ${{selectedStyle.id}}`);
     }}
   }}
 
@@ -1546,13 +1522,8 @@ function updateSlotUI(type) {{
     filled.hidden = false;
     img.src = item.img;
     img.alt = item.name;
-    if (item.isRealistic) {{
-      code.textContent = '';
-      name.textContent = currentLang === 'en' ? (item.name_en || 'Realistic') : item.name;
-    }} else {{
-      code.textContent = item.id ? ((type === 'style' || type === 'char-style' || type === 'scene-style') ? `#${{item.id}}` : item.id) : '';
-      name.textContent = (type === 'style' || type === 'char-style' || type === 'scene-style') ? (currentLang === 'en' && item.name_en ? item.name_en : (item.ref ? item.ref.split('/')[0].trim() : item.name)) || '' : '';
-    }}
+    code.textContent = item.id ? ((type === 'style' || type === 'char-style' || type === 'scene-style') ? `#${{item.id}}` : item.id) : '';
+    name.textContent = (type === 'style' || type === 'char-style' || type === 'scene-style') ? (currentLang === 'en' && item.name_en ? item.name_en : (item.ref ? item.ref.split('/')[0].trim() : item.name)) || '' : '';
   }} else {{
     slotEl.classList.remove('has-value');
     trigger.hidden = false;
@@ -1798,9 +1769,7 @@ function renderPickerItems() {{
     list = LAYOUTS_DATA;
     selectedId = selectedLayout ? selectedLayout.id : null;
   }} else if (currentPickerType === 'style' || currentPickerType === 'char-style' || currentPickerType === 'scene-style') {{
-    const realisticMatch = !query || '写实'.includes(query) || 'realistic'.includes(query) || '摄影'.includes(query) || 'photo'.includes(query) || '真实'.includes(query) || '实景'.includes(query);
-    const filterAllows = currentPickerFilter === 'all' || currentPickerFilter === 'FI';
-    list = (realisticMatch && filterAllows) ? [REALISTIC_ITEM, ...STYLES_DATA] : STYLES_DATA;
+    list = STYLES_DATA;
     if (currentPickerType === 'style') selectedId = selectedStyle ? selectedStyle.id : null;
     else if (currentPickerType === 'char-style') selectedId = selectedCharStyle ? selectedCharStyle.id : null;
     else if (currentPickerType === 'scene-style') selectedId = selectedSceneStyle ? selectedSceneStyle.id : null;
@@ -1810,14 +1779,6 @@ function renderPickerItems() {{
   }}
 
   const filtered = list.filter(item => {{
-    if (item.isRealistic) {{
-      if (currentPickerFilter !== 'all' && currentPickerFilter !== 'FI') return false;
-      if (query) {{
-        const q = query.toLowerCase();
-        return '写实'.includes(q) || 'realistic'.includes(q) || '摄影'.includes(q) || 'photo'.includes(q) || '真实'.includes(q) || '实景'.includes(q) || item.name.toLowerCase().includes(q) || (item.name_en && item.name_en.toLowerCase().includes(q)) || (item.ref && item.ref.toLowerCase().includes(q));
-      }}
-      return true;
-    }}
     // Category match
     if (currentPickerType === 'asset') {{
       if (currentPickerFilter !== 'all' && item.cat !== currentPickerFilter) return false;
@@ -1880,11 +1841,10 @@ function renderPickerItems() {{
     }}
 
     const isSel = selectedId === item.id;
-    const badge = item.isRealistic ? '' : ((currentPickerType === 'style' || currentPickerType === 'char-style' || currentPickerType === 'scene-style') ? `#${{item.id}}` : item.id);
+    const badge = (currentPickerType === 'style' || currentPickerType === 'char-style' || currentPickerType === 'scene-style') ? `#${{item.id}}` : item.id;
     const badgeHtml = badge ? `<span class="picker-card-id">${{badge}}</span>` : '';
-    const extraCls = item.isRealistic ? ' is-realistic' : '';
     return `
-      <button type="button" class="picker-card${{isSel ? ' is-selected' : ''}}${{extraCls}}" data-id="${{item.id}}">
+      <button type="button" class="picker-card${{isSel ? ' is-selected' : ''}}" data-id="${{item.id}}">
         <img class="picker-card-img" src="${{item.img}}" alt="${{displayName}}">
         <div class="picker-card-info">
           ${{badgeHtml}}
@@ -2294,7 +2254,7 @@ document.querySelector('#btn-gacha').addEventListener('click', () => {{
   }}
 
   if (isFusionActive) {{
-    const pool = [REALISTIC_ITEM, ...STYLES_DATA];
+    const pool = STYLES_DATA;
     selectedCharStyle = pool[Math.floor(Math.random() * pool.length)];
     const remain = pool.filter(x => x.id !== selectedCharStyle.id);
     selectedSceneStyle = remain[Math.floor(Math.random() * remain.length)];
@@ -2308,7 +2268,7 @@ document.querySelector('#btn-gacha').addEventListener('click', () => {{
   }}
 
   // Random style
-  const stylePool = [REALISTIC_ITEM, ...STYLES_DATA];
+  const stylePool = STYLES_DATA;
   selectedStyle = stylePool[Math.floor(Math.random() * stylePool.length)];
 
   updateSlotUI('layout');
@@ -2522,8 +2482,6 @@ if (styleParam) {{
   const found = STYLES_DATA.find(x => x.id === norm || x.id.toUpperCase() === clean.toUpperCase() || String(x.legacy_id) === clean);
   if (found) {{
     selectedStyle = found;
-  }} else if (clean.toLowerCase() === 'realistic' || clean === '写实') {{
-    selectedStyle = REALISTIC_ITEM;
   }}
 }}
 if (layoutParam) {{

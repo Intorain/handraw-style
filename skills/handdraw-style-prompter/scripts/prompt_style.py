@@ -361,8 +361,12 @@ def main() -> None:
     reference_image_zh = ""
     reference_image_en = ""
     if decision["use_reference_image"] and args.mode == "pure-image":
-        reference_image_zh = f"参考图：请上传本地参考图 {decision['reference_path']}。{REFERENCE_ISOLATION_ZH}"
-        reference_image_en = f" Reference image: upload local reference image {decision['reference_path']}. {REFERENCE_ISOLATION_EN}"
+        if decision.get("reference_path"):
+            reference_image_zh = f"参考图：请上传本地参考图 {decision['reference_path']}。{REFERENCE_ISOLATION_ZH}"
+            reference_image_en = f" Reference image: upload local reference image {decision['reference_path']}. {REFERENCE_ISOLATION_EN}"
+        else:
+            reference_image_zh = f"参考图：{REFERENCE_ISOLATION_ZH}"
+            reference_image_en = f" Reference image: {REFERENCE_ISOLATION_EN}"
     color_zh = f"{color_info['prompt_zh']}" if color_info else ""
     color_en = f" {color_info['prompt_en']}" if color_info else ""
     print(f"风格名称：{selected['generation_name']}。{color_zh}主题：{args.theme}。{reference_zh}{traits_zh}{reference_image_zh}{zh_extra}{redraw_zh}{graphic_text_suffix}")

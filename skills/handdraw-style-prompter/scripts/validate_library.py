@@ -141,7 +141,7 @@ def main() -> None:
     if any(not item["traits"] for item in fe_supplement):
         fail("FE-032–FE-047 core visual traits must be populated")
     style_205 = next(item for item in styles if item["number"] == "FE-036")
-    if not style_205["traits"] or "猫狗性格" not in style_205["traits"]:
+    if not style_205["traits"] or "冷幽默" not in style_205["traits"]:
         fail("style FE-036 (old 205) core visual traits are missing")
     if any(item["number"].split("-")[0] not in CATEGORIES for item in styles):
         fail(f"all styles must belong to one of {len(CATEGORIES)} categories")

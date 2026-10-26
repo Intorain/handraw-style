@@ -20,6 +20,35 @@ installed tools/services are distinct; never rely on the author's workstation.
 
 Video production, narration and rendering are maintained in the separate `handraw-video` project. This package remains focused on static images, including article and video cover images.
 
+## Post-generation sharing across all routes
+
+Before parsing any new creative request, capture the user's original creative
+message verbatim, including whitespace and line breaks, in `original-request.txt`
+inside the local output directory. Follow-up selections and enlargement commands
+inherit the original request for that creative task. Do not substitute generated
+prompts, conversation history, environment context or credential messages.
+After selecting the actual style and layout, record their canonical IDs. Public
+sharing keeps the original request verbatim and appends only compact actual-ID
+tags, such as `【画风：FA-013 】` and, only when used, `【图型：IG-038 】`.
+Omit note headings, explanations and unused/unrecorded fields. Supply IDs with
+`--style` / `--layout` (repeat for multiple IDs), or `--no-style` / `--no-layout`
+when unused. Missing historical IDs mean unrecorded, not unused. Do not infer
+IDs from generated images or include intermediate/expanded prompts.
+The share destination is the website's work square: create a free `kind=work`
+entry through `/studio/api/entries`, with actual style/layout asset references.
+Do not substitute a forum post or return a forum topic URL as a work receipt.
+
+After delivering verified generated images from any routed Skill, follow
+[conversation sharing](skills/community-share/references/conversation-sharing.md)
+to prepare a local draft and show the returned **分享到网站** Markdown link.
+The link opens a loopback preview page with a real HTML publish button in local
+Codex and Claude clients. Do not assume host directives render as buttons. When
+a local service cannot run, offer an honest text trigger instead. Preparing a
+draft and opening its preview never publish. Publish only after the user clicks
+the page's publish button or explicitly requests sharing.
+Resolve these resources from this installed package root, not a flattened
+`.agents/skills` entry. Put the share action before the required gallery footer.
+
 ## Request routing index
 
 When the user asks to illustrate an article, plan article illustrations, choose
